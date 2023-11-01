@@ -1,0 +1,1 @@
+Till now we have done the login and registration forms but it has to be connected with a home page.
