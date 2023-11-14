@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/home";
-import LoginPage from "../pages/signin";
-import SignupPage from "../pages/signup";
+import LoginPage from "../pages/Comp/signin";
+import SignupPage from "../pages/Comp/signup";
 const Index = () => {
   return (
     <div>

@@ -1,56 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-const homePageStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  minHeight: '100vh',
-  background: 'transparent',
-  color: 'white',
-  fontFamily: 'Arial, sans-serif',
-};
-
-const linkContainerStyle = {
-  display: 'flex',
-  gap: '10px',
-};
-
-const buttonStyle = {
-  backgroundColor: 'transparent',
-  border: '1px solid white',
-  color: 'white',
-  padding: '10px 20px',
-  cursor: 'pointer',
-  textDecoration: 'none',
-  display: 'inline-block',
-  transition: 'background-color 0.3s, color 0.3s',
-};
-
-const buttonHoverStyle = {
-  backgroundColor: 'white',
-  color: 'black',
-};
+import React from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./Comp/navbar";
+import Footer from "./Comp/footer";
+import About from "./HomePage/about";
+import Carousel from "./HomePage/carousel";
+import Service from "./HomePage/service";
 
 function HomePage() {
   return (
-    <div style={homePageStyle}>
-      <h1>Welcome to Our 470 Project</h1>
-      <div style={linkContainerStyle}>
-        <Link to="/login" style={{ ...buttonStyle, ...linkStyle }}>
-          Login
-        </Link>
-        <Link to="/signup" style={{ ...buttonStyle, ...linkStyle }}>
-          Signup
-        </Link>
-      </div>
+    <div>
+      {/* Add the Navbar component */}
+      <Navbar />
+      {/* Add the Carousel component */}
+      <Carousel />
+      {/* Add the Service component */}
+      <Service />
+      {/* Add the About component */}
+      <About />
+      {/* Add the Footer component */}
+      <Footer />
     </div>
   );
 }
-
 const linkStyle = {
-  textDecoration: 'none',
+  textDecoration: "none",
 };
 
 export default HomePage;
