@@ -58,7 +58,7 @@ const Navbar = () => {
             Contact
           </Link>
         </div>
-        <Link to="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+        <Link to="/joinform" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
           Join Now<i className="fa fa-arrow-right ms-3"></i>
         </Link>
       </div>

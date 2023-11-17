@@ -16,7 +16,7 @@ const Admin = require("../model/adminSchema");
 router.post("/asignup", async (req, res) => {
   const { name, email, phone, occupation, password, cpassword } = req.body;
 
-  if (!name || !email || !phone || !occupation || !password || !cpassword) {
+  if (!email || !name || !phone || !password || !cpassword) {
     return res
       .status(422)
       .json({ error: "Please fill all the fields properly!" });
@@ -139,9 +139,9 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { name, email, phone, occupation, password, cpassword } = req.body;
+  const {email, name, phone, password, cpassword } = req.body;
 
-  if (!name || !email || !phone || !occupation || !password || !cpassword) {
+  if (!email || !name ||  !phone  || !password || !cpassword) {
     return res
       .status(422)
       .json({ error: "Please fill all the fields properly!" });
@@ -156,10 +156,9 @@ router.post("/signup", async (req, res) => {
       return res.status(422).json({ error: "Password does not match!" });
     } else {
       const user = new User({
-        name,
         email,
+        name,
         phone,
-        occupation,
         password,
         cpassword,
       });
