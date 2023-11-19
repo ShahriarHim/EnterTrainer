@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./Comp/navbar";
 import Footer from "./Comp/footer";
-import About from "./HomePage/about";
-import Carousel from "./HomePage/carousel";
-import Service from "./HomePage/service";
+// import About from "./HomePage/about";
+// import Carousel from "./HomePage/carousel";
+// import Service from "./HomePage/service";
 
 
 const HomePage = () => {
@@ -11,9 +11,7 @@ const HomePage = () => {
     <div>
    
       <Navbar />
-      <Carousel />
-      <Service />
-      <About />
+      <h2>Welcome after Login</h2>
       <Footer />
 
     </div>

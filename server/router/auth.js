@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const jwt = require("jsonwebtoken");
-
+//const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 const passport = require("passport"); // Add this line
 
 require("dotenv").config();
@@ -10,8 +11,9 @@ require("dotenv").config();
 require("../db/conn");
 const User = require("../model/userSchema");
 const Admin = require("../model/adminSchema");
+const Token = require("../model/tokenSchema");
 
-//// Admin part //////////////////////////////////////////////////////
+//Admin part //////////////////////////////////////////////////////
 
 router.post("/asignup", async (req, res) => {
   const { name, email, phone, occupation, password, cpassword } = req.body;
@@ -34,7 +36,6 @@ router.post("/asignup", async (req, res) => {
         name,
         email,
         phone,
-        occupation,
         password,
         cpassword,
       });
@@ -116,6 +117,64 @@ router.get(
 );
 
 // user part////////////////////////////////////////////
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if the email exists in the User collection
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Generate a unique token for the user
+    const tokenValue = crypto.randomBytes(20).toString('hex');
+
+    // Set expiration time (e.g., 1 hour from now)
+    const expirationTime = new Date();
+    expirationTime.setHours(expirationTime.getHours() + 1);
+
+    // Save the token to the Token collection
+    const token = new Token({
+      email: user.email,
+      token: tokenValue,
+      expiresAt: expirationTime,
+    });
+    const saveToken = await token.save();
+    /*await token.save();*/
+
+    res.status(200).json({email : user.email,  message: 'Token generated successfully', token: tokenValue });
+  } catch (error) {
+    console.error('Error during forgot password:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.post('/reset-password', async (req, res) => {
+  try {
+    const { email, token, newPassword } = req.body;
+
+    // Find the token in the Token collection
+    const resetToken = await Token.findOne({ email, token, expiresAt: { $gt: new Date() } });
+
+    if (!resetToken) {
+      return res.status(400).json({ error: 'Invalid or expired token' });
+    }
+
+    // Update the user's password in the User collection
+    const user = await User.findOneAndUpdate({ email }, { password: newPassword ,cpassword : newPassword});
+
+    // Remove the used token from the Token collection
+    await resetToken.remove();
+
+    res.status(200).json({ message: 'Password reset successful.' });
+  } catch (error) {
+    console.error('Error during password reset:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 router.get(
   "/bot",
