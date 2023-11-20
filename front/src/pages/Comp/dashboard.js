@@ -33,7 +33,7 @@ const Dashboard = () => {
           <Link to="/courses" className="nav-item nav-link">
             Courses
           </Link>
-          <Link to="/contact" className="nav-item nav-link">
+          <Link to="/profile" className="nav-item nav-link">
             Profile
           </Link>
         </div>
