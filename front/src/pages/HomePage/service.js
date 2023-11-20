@@ -36,7 +36,7 @@ function Service() {
             <div className="service-item text-center pt-3">
               <div className="p-4">
                 <i className="fa fa-3x fa-book-open text-primary mb-4"></i>
-                <h5 className="mb-3">Book Library</h5>
+                <h5 className="mb-3">Resources</h5>
                 <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
               </div>
             </div>

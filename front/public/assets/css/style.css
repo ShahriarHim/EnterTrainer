@@ -444,7 +444,7 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background: -webkit-linear-gradient(left, #100446, #06BBCC);
+  background: whitesmoke;
 }
 ::selection{
   background: #fa4299;
@@ -593,7 +593,7 @@ form .btn .btn-layer{
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+  background: -webkit-linear-gradient(right, #100446, #06BBCC);
   border-radius: 5px;
   transition: all 0.4s ease;;
 }
@@ -621,16 +621,6 @@ form .btn input[type="submit"]{
 }
 
 body {
-    background-color: #ff99f5;
-    background-image:
-        radial-gradient(at 61% 4%, hsla(303, 91%, 61%, 1) 0px, transparent 50%),
-        radial-gradient(at 75% 66%, hsla(196, 91%, 79%, 1) 0px, transparent 50%),
-        radial-gradient(at 98% 88%, hsla(76, 87%, 78%, 1) 0px, transparent 50%),
-        radial-gradient(at 23% 16%, hsla(238, 96%, 77%, 1) 0px, transparent 50%),
-        radial-gradient(at 95% 65%, hsla(13, 91%, 75%, 1) 0px, transparent 50%),
-        radial-gradient(at 10% 79%, hsla(228, 96%, 69%, 1) 0px, transparent 50%),
-        radial-gradient(at 85% 58%, hsla(328, 81%, 68%, 1) 0px, transparent 50%);
-    background-repeat: no-repeat;
     color: white;
     display: flex;
     align-items: center;
@@ -647,7 +637,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 40px;
+    padding: 20px 40px;
 }
 
 .lock-icon {

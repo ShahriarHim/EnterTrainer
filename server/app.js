@@ -22,8 +22,8 @@ app.use(require("./router/auth"));
 const PORT = process.env.PORT;
 
 
-const restaurantRoutes = require("./router/restaurentRoutes");
-app.use("/restaurant", restaurantRoutes);
+const courseRoutes = require("./router/courseRoutes");
+app.use("/course", courseRoutes);
 app.use("/public/uploads", express.static("public/uploads"));
 
 app.listen(PORT, () => {

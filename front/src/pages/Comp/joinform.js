@@ -11,8 +11,7 @@ const JoinForm = () => {
     password: '',
     cpassword: '',
   });
-
-
+  
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
@@ -78,7 +77,9 @@ const JoinForm = () => {
     } catch (error) {
       console.error('Error during login:', error);
     }
+    
   };
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -157,7 +158,7 @@ const JoinForm = () => {
             <br></br><br></br>
             <div className="signup-link">
               Not a member?{' '}
-              <a href="" onClick={handleSignupLinkClick}>
+              <a href="" onClick={handleSignupLinkClick} style={{ display: 'block', textAlign: 'center' }}>
                 Signup now
               </a>
             </div>
