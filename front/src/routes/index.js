@@ -5,6 +5,7 @@ import IndexPage from "../pages/indexPage";
 import ForgotPass from "../pages/ResetPass/forgotPass";
 import ResetPass from "../pages/ResetPass/resetPass";
 import Profile from "../pages/Profile/profile";
+import CourseGenres from "../pages/Courses/courseGenre";
 
 
 const Index = () => {
@@ -18,6 +19,7 @@ const Index = () => {
         <Route path="/forgot-password" element={<ForgotPass />}></Route>
         <Route path="/reset-password" element={<ResetPass />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/genre" element={<CourseGenres />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

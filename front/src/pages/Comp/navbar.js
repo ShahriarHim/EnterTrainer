@@ -5,44 +5,7 @@ import { Link , useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
 
-  // const navigate = useNavigate();
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [username, setUsername] = useState("");
-
-  // const handleLogout = async () => {
-  //   try {
-  //     await axios.get("http://localhost:5000/logout");
-  //     localStorage.removeItem("token"); // Remove token from local storage
-  //     navigate("/joinform"); // Redirect to login page
-  //   } catch (error) {
-  //     console.error("Logout failed:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     axios
-  //       .get("http://localhost:5000/bot", {
-  //         headers: {
-  //           Authorization: token,
-  //         },
-  //       })
-  //       .then((res) => {
-  //         console.log(res);
-  //         setIsLoggedIn(true);
-  //         setUsername(res.data.user.username); // Assuming the response contains the username
-  //         console.log(res.data.user.username);
-  //         // console.log(res.data.user.id)style={{ width: '150px', height: '70px' }
-  //       })
-  //       .catch((err) => {
-  //         setIsLoggedIn(false);
-  //         navigate("/");
-  //       });
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, []);
+  
 
 
   return (

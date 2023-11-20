@@ -30,7 +30,7 @@ const Dashboard = () => {
           <Link to="/" className="nav-item nav-link active">
             Home
           </Link>
-          <Link to="/courses" className="nav-item nav-link">
+          <Link to="/genre" className="nav-item nav-link">
             Courses
           </Link>
           <Link to="/profile" className="nav-item nav-link">

@@ -6,6 +6,7 @@ import Dashboard from "./Comp/dashboard";
 // import Carousel from "./HomePage/carousel";
 // import Service from "./HomePage/service";
 import Filter_Interest from "./Comp/filter_Interest";
+import CourseGenres from "./Courses/courseGenre";
 
 const IndexPage = () => {
   return (
@@ -13,9 +14,10 @@ const IndexPage = () => {
 
       <Dashboard />
 
-      <h2 style={{ textAlign: 'center' }}>Welcome after Login</h2>
+      <h2 style={{ textAlign: 'center' }}>Hello User!</h2>
       
       <Filter_Interest />
+      <CourseGenres />
       <Footer />
 
     </div>

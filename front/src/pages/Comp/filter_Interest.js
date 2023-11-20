@@ -1,39 +1,63 @@
-// FilterInterest.js
-
 import React, { useState } from 'react';
 
 const FilterInterest = () => {
-  // State to store selected values
-  const [selectedValues, setSelectedValues] = useState([]);
+  const [selectedValues, setSelectedValues] = useState('');
 
-  // Options for the select dropdown
-  const options = [
-    { value: '1', label: 'One' },
-    { value: '2', label: 'Two' },
-    { value: '3', label: 'Three' },
-    { value: '4', label: 'Four' },
-    { value: '5', label: 'Five' },
-  ];
+  const selectAll = () => {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
 
-  // Handler for selecting values
-  const handleSelectChange = (e) => {
-    const selectedOptions = Array.from(e.target.options)
-      .filter((option) => option.selected)
-      .map((option) => option.value);
+    for (let i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = selectAllCheckbox.checked;
+    }
 
-    setSelectedValues(selectedOptions);
+    displaySelectedValues();
+  };
+
+  const displaySelectedValues = () => {
+    const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    const values = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value).join(', ');
+    setSelectedValues(values);
+  };
+
+  const handleCheckboxChange = () => {
+    displaySelectedValues();
   };
 
   return (
-    <div className="filter-interest">
-      <select className="select" multiple onChange={handleSelectChange} value={selectedValues}>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-      <label className="form-label select-label">Example label</label>
+    <div id="selection-box" style={{ backgroundColor: '#06BBCC', maxWidth: '300px', padding: '15px', borderRadius: '8px' }}>
+      <div className="checkbox-container">
+        <input type="checkbox" id="selectAllCheckbox" value="selectAll" onClick={selectAll} /> Select Interest
+      </div>
+
+      <div className="checkbox-container">
+        <input type="checkbox" id="checkboxOne" value="one" onChange={handleCheckboxChange} />
+        <label htmlFor="checkboxOne">Guitar</label>
+      </div>
+
+      <div className="checkbox-container">
+        <input type="checkbox" id="checkboxTwo" value="two" onChange={handleCheckboxChange} />
+        <label htmlFor="checkboxTwo">Violin</label>
+      </div>
+
+      <div className="checkbox-container">
+        <input type="checkbox" id="checkboxThree" value="three" onChange={handleCheckboxChange} />
+        <label htmlFor="checkboxThree">Piano</label>
+      </div>
+
+      <div className="checkbox-container">
+        <input type="checkbox" id="checkboxFour" value="four" onChange={handleCheckboxChange} />
+        <label htmlFor="checkboxFour">Singing</label>
+      </div>
+
+      <div className="checkbox-container">
+        <input type="checkbox" id="checkboxFive" value="five" onChange={handleCheckboxChange} />
+        <label htmlFor="checkboxFive">Mimicry</label>
+      </div>
+
+      <p>
+        Selected Genres: <span id="selectedValues">{selectedValues}</span>
+      </p>
     </div>
   );
 };
