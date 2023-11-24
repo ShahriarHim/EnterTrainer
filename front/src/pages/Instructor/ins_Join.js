@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const JoinForm = () => {
+const InsJoin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -17,7 +17,7 @@ const JoinForm = () => {
 
 
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('/ins-signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const JoinForm = () => {
 
 
       if (response.ok) {
-        alert('Registration successful');
+        alert('Registered as Instructor');
         handleLoginClick();
       } else {
         alert(data.message);
@@ -51,7 +51,7 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/signin', {
+      const response = await fetch('/ins-signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,8 +67,8 @@ const JoinForm = () => {
 
 
       if (response.ok) {
-        alert('Log in Successful!');
-        navigate('/home');
+        alert('Logged in as Instructor!');
+        navigate('/ins-home');
       } else {
 
         alert('Invalid credentials! Try again');
@@ -161,12 +161,6 @@ const JoinForm = () => {
                 Signup now
               </a>
             </div>
-            <div className="signup-link">
-
-              <a href="/ins-join" style={{ display: 'block', textAlign: 'center' }}>
-                Join as an Instructor
-              </a>
-            </div>
             <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
               Go to Home
             </Link>
@@ -233,4 +227,4 @@ const JoinForm = () => {
     </div>
   );
 };
-export default JoinForm;
+export default InsJoin;

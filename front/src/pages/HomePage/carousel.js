@@ -14,9 +14,12 @@ function Carousel() {
                   <h5 className="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
                   <h1 className="display-3 text-white animated slideInDown">The Best Online skill enriching Platform</h1>
                   <p className="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
-                  <a href="" className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                  {/* <a href="" className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a> */}
                   <Link to="/joinform" className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
                     Join Now
+                  </Link>
+                  <Link to="/ins-join" className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
+                    Join as Instructor
                   </Link>
                 </div>
               </div>

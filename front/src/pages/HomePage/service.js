@@ -10,7 +10,7 @@ function Service() {
               <div className="p-4">
                 <i className="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
                 <h5 className="mb-3">Skilled Instructors</h5>
-                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                <p style={{color: 'black'}}>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@ function Service() {
               <div className="p-4">
                 <i className="fa fa-3x fa-globe text-primary mb-4"></i>
                 <h5 className="mb-3">Online Classes</h5>
-                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                <p style={{color: 'black'}}>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
               </div>
             </div>
           </div>
@@ -28,7 +28,7 @@ function Service() {
               <div className="p-4">
                 <i className="fa fa-3x fa-home text-primary mb-4"></i>
                 <h5 className="mb-3">Home Projects</h5>
-                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                <p style={{color: 'black'}}>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ function Service() {
               <div className="p-4">
                 <i className="fa fa-3x fa-book-open text-primary mb-4"></i>
                 <h5 className="mb-3">Resources</h5>
-                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                <p style={{color: 'black'}}>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
               </div>
             </div>
           </div>
