@@ -37,17 +37,22 @@ router.post("/create-course",  async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 });
-router.get('/genre', async (req, res) => {
+router.post('/genre', async (req, res) => {
   const { genre } = req.body;
 
   try {
     const courses = await Courses.find({ genre }, 'name details');
-    res.json(courses);
+    if (courses.length === 0) {
+      res.json({ message: 'This genre has no courses.' });
+    } else {
+      res.json(courses);
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 router.get("/all-courses", async (req, res) => {
 

@@ -1,0 +1,43 @@
+.payment-card {
+    background-color: #06bbcc;
+    color: #fff;
+    border: 1px solid #06bbcc;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    margin: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-number {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  .alert {
+    color: red;
+    margin-bottom: 10px;
+    font-size: medium;
+  }
+  
+  button {
+    background-color: #fff;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Make the button width 100% to center it */
+  }
+  

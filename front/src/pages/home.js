@@ -4,7 +4,7 @@ import Footer from "./Comp/footer";
 import About from "./HomePage/about";
 import Carousel from "./HomePage/carousel";
 import Service from "./HomePage/service";
-
+import CourseCategories from "./Comp/categories";
 
 const HomePage = () => {
   return (
@@ -12,6 +12,7 @@ const HomePage = () => {
    
       <Navbar />
       <Carousel />
+      <CourseCategories />
       <Service />
       <About />
       <Footer />
