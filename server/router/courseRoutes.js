@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Courses = require("../model/coursesSchema");
 const multer = require('multer');
-
+const Subscription = require('../model/subscription')
 // const upload = require("../multerConfig");
 
 router.post("/create-course",  async (req, res) => {
@@ -97,5 +97,59 @@ router.post('/upload-video', (req, res) => {
     res.json({ message: 'Video uploaded successfully', videoTitle, videoPath });
   });
 });
+
+router.post('/subscribe', async (req, res) => {
+  const { user_Id, course_Id } = req.body;
+
+  try {
+    const course = await Courses.findById(course_Id);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    // Check if the user is already subscribed
+    const existingSubscription = await Subscription.findOne({ user_Id, course_Id });
+    if (existingSubscription) {
+      return res.status(400).json({ error: 'User is already subscribed to this course' });
+    }
+
+    // Create a new subscription
+    const subscription = new Subscription({
+      user_Id,
+      course_Id,
+    });
+
+    await subscription.save();
+
+    res.json({ message: 'Subscription successful' });
+  } catch (error) {
+    console.error(error); // Log the error to your console
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
+
+router.get('/subscriptions/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    // Find all subscriptions for the given user
+    const subscriptions = await Subscription.find({ userId });
+
+    // Assuming you want to send back the course details as well
+    const courses = await Course.find({ _id: { $in: subscriptions.map(sub => sub.courseId) } });
+
+    res.json({ subscriptions, courses });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+
+
+
+
+
 
 module.exports = router;
