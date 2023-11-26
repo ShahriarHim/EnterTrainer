@@ -67,6 +67,7 @@ const JoinForm = () => {
 
 
       if (response.ok) {
+        localStorage.setItem("jw_token", data.token);
         alert('Log in Successful!');
         navigate('/home');
       } else {

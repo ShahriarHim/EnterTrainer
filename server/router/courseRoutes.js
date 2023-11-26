@@ -102,7 +102,8 @@ router.post('/upload-video', (req, res) => {
 });
 
 router.post('/subscribe', async (req, res) => {
-  const { user_Id, course_Id } = req.body;
+  const { user_Id , course_Id} = req.body;
+
 
   try {
     const course = await Courses.findById(course_Id);
@@ -132,21 +133,46 @@ router.post('/subscribe', async (req, res) => {
 });
 
 router.get('/subscriptions/:userId', async (req, res) => {
-  const userId = req.params.userId;
-
   try {
-    // Find all subscriptions for the given user
-    const subscriptions = await Subscription.find({ userId });
+    const userId = req.params.userId; // Extracting user ID from the request parameter
 
+<<<<<<< HEAD
     // Assuming you want to send back the course details as well
     const courses = await Courses.find({ _id: { $in: subscriptions.map(sub => sub.courseId) } });
+=======
+    // Find subscriptions for the given user ID and populate course details
+    const userSubscriptions = await Subscription.find({ user_Id: userId })
+      .populate({
+        path: 'course_Id',
+        select: 'name genre details' // Update to select 'name' field from the Courses model
+      })
+      .exec();
+>>>>>>> ad76b7176e3e37ec04859bbb2aaafec10e73a4b8
 
-    res.json({ subscriptions, courses });
+    // Check if userSubscriptions array is empty
+    if (userSubscriptions.length === 0) {
+      return res.json({ message: 'No subscriptions yet for this user.' });
+    }
+
+    // Extract course details from subscriptions and send as a response
+    const coursesSubscribed = userSubscriptions.map(subscription => {
+      return {
+        courseId: subscription.course_Id._id,
+        courseName: subscription.course_Id.name, // Accessing the 'name' field here
+        genre: subscription.course_Id.genre,
+        details: subscription.course_Id.details,
+        subscriptionDate: subscription.subscriptionDate
+      };
+    });
+
+    res.json({ coursesSubscribed });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
   }
 });
 
+<<<<<<< HEAD
 router.post("/instructor/courses", async (req, res) => {
   try {
     const instructorId = req.body.instructorId; // Assuming the instructorId is sent in the request body
@@ -161,6 +187,14 @@ router.post("/instructor/courses", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+=======
+module.exports = router;
+
+module.exports = router;
+
+
+
+>>>>>>> ad76b7176e3e37ec04859bbb2aaafec10e73a4b8
 
 
 // Route for instructors to join courses

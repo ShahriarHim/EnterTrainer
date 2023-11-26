@@ -1,16 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const Courses = ({ courses }) => {
   const navigate = useNavigate();
 
   const handleStartCourse = (courseId) => {
-    console.log(`Starting course with ID: ${courseId}`);
-    navigate('/checkout');
-  };
 
-  // Mapping of genres to colors
-  const genreColors = {};
+      navigate(`/checkout/${courseId}`);
+
+  };
+  
 
   return (
     <div>
@@ -22,7 +22,6 @@ const Courses = ({ courses }) => {
               <div
                 key={course._id}
                 className="course-card"
-                style={{ backgroundColor: genreColors[course.genre] }}
               >
                 <h3 style={{ color: '#fff', textAlign: 'center' }}>{course.name}</h3>
                 <p style={{ color: 'black', textAlign: 'center' }}>{course.details}</p>
