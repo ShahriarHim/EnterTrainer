@@ -2,18 +2,69 @@
 
 /* Card container */
 .card {
-    background-color: #06BBCC;
-    color: #000;
-    width: flex;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff; /* Change background to white */
+    width: 100%;
     padding: 20px;
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 270px; /* Set a minimum height for the card */
+  }
+  
+  /* Left section */
+  .left-section {
+    display: flex;
+    align-items: flex-start;
+    width: 30%;
+    min-width: 300px;
+    padding-left: 60px; /* Set minimum width for the left section */
+  }
+  
+  /* Right section */
+  .right-section {
+    flex: 70%;
+    padding-left: 20px; /* Adjust spacing */
+    padding-top: 40px;
+    display: flex; /* Enable flexbox */
+  
+  }
+  
+  /* Label style */
+  .label {
+    font-weight: bold; /* Make the labels bold */
+  }
+  
+  /* Vertical line */
+  .line {
+    position: absolute;
+    top: 21px;
+    bottom: 0;
+    left: 30%; /* Position the line */
+    border-left: 2px solid #fe0000; /* Vertical line appearance */
+    height: 80%; /* Height of the vertical line */
+  }
+  
+  /* Left section (photo) */
+  .photo {
+    position: fixed;
+    flex: 30%;
+    min-width: 300px; /* Set minimum width for the photo */
+    padding-right: 5px; /* Adjust spacing */
+  }
+  
+  /* Right section (details) */
+  .details-section {
+    flex: 100%;
+    padding-left: 0px; /* Adjust spacing */
+    margin-left: 410px; /* Margin for the right section */
   }
   
   /* Course name */
   .course-name {
-    color: #fff;
+    color: #000;
     font-size: 24px;
     margin-bottom: 10px;
   }
@@ -21,11 +72,35 @@
   /* Genre */
   .genre {
     color: red;
-    font-weight: bold;
+    margin-bottom: 10px;
   }
   
   /* Details */
   .details {
     color: #000;
+    margin-bottom: 10px;
+    word-wrap: wrap; /* Allow details to wrap */
+  }
+  
+  /* Resume button */
+  .resume-button {
+    padding: 8px 16px;
+    background-color: #06BBCC;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: auto;
+    width: 200px; /* Fixed width for the button */
+    text-align: center;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis if content exceeds button width */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for the resume button */
+  .resume-button:hover {
+    background-color: #009688; /* Change background color on hover */
   }
   

@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import './showCourses.css';
 import Dashboard from '../Comp/dashboard';
-
+import Image from '../Images/download.jpg';
 const ShowCourses = () => {
     const [courses, setCourses] = useState([]);
 
@@ -42,10 +42,27 @@ const ShowCourses = () => {
                     {courses.length > 0 ? (
                         courses.map(course => (
                             <div className="card" key={course.courseId}>
-                                <h3 className="course-name">{course.courseName}</h3>
-                                <p className="genre">Genre: {course.genre}</p>
-                                <p className="details">Details: {course.details}</p>
-                                <p className="subscriptionDate">Subscription Date: {course.subscriptionDate}</p>
+                                <div className="left-section">
+                                    <div className="photo">
+                                        {/* Use the image */}
+                                        <img src={Image} alt="Course Thumbnail" />
+                                    </div>
+                                    <div className="line"></div>
+                                </div>
+                                <div className="right-section">
+                                    <div className="details-section">
+                                        <h3 className="course-name">
+                                            <span className="label">Course Name:</span> {course.courseName}
+                                        </h3>
+                                        <p className="genre">
+                                            <span className="label">Genre:</span> {course.genre}
+                                        </p>
+                                        <p className="details">
+                                            <span className="label">Details:</span> {course.details}
+                                        </p>
+                                        <button className="resume-button">Resume Course</button>
+                                    </div>
+                                </div>
                             </div>
                         ))
                     ) : (
