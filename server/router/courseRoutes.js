@@ -3,6 +3,9 @@ const router = express.Router();
 const Courses = require("../model/coursesSchema");
 const multer = require('multer');
 const Subscription = require('../model/subscription')
+const InstructorCourse = require('../model/instructorCourseSchema');
+const passport = require('passport'); // Assuming you have Passport configured
+
 // const upload = require("../multerConfig");
 
 router.post("/create-course",  async (req, res) => {
@@ -136,7 +139,7 @@ router.get('/subscriptions/:userId', async (req, res) => {
     const subscriptions = await Subscription.find({ userId });
 
     // Assuming you want to send back the course details as well
-    const courses = await Course.find({ _id: { $in: subscriptions.map(sub => sub.courseId) } });
+    const courses = await Courses.find({ _id: { $in: subscriptions.map(sub => sub.courseId) } });
 
     res.json({ subscriptions, courses });
   } catch (error) {
@@ -144,12 +147,54 @@ router.get('/subscriptions/:userId', async (req, res) => {
   }
 });
 
+router.post("/instructor/courses", async (req, res) => {
+  try {
+    const instructorId = req.body.instructorId; // Assuming the instructorId is sent in the request body
+
+    // Find all courses associated with the given instructorId
+    const courses = await InstructorCourse.find({ instructorId })
+      .populate('courseId'); // This will populate the 'courseId' field with the actual course details
+
+    res.json(courses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 
+// Route for instructors to join courses
+router.post('/instructor-courses', async (req, res) =>  {
+  const { instructorId, courseId } = req.body;
 
+  try {
+    // Check if the instructor is already associated with the course
+    const existingAssociation = await InstructorCourse.findOne({
+      instructorId,
+      courseId,
+    });
 
+    if (existingAssociation) {
+      return res.status(422).json({ error: 'Instructor is already associated with this course' });
+    }
 
+    // Create a new association between the instructor and the course
+    const newAssociation = new InstructorCourse({
+      instructorId,
+      courseId,
+    });
 
+    await newAssociation.save();
 
+    res.status(201).json({
+      success: true,
+      message: 'Instructor joined the course successfully',
+      association: newAssociation,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+});
 
 module.exports = router;
