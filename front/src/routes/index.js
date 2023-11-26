@@ -9,6 +9,7 @@ import Profile from "../pages/Profile/profile";
 // import Courses from "../pages/Comp/courses";
 import Payment from "../pages/Comp/payment";
 import InsHome from "../pages/Instructor/ins-Home";
+import ShowCourses from "../pages/User/showCourses";
 const Index = () => {
   return (
     <div>
@@ -22,8 +23,9 @@ const Index = () => {
         <Route path="/forgot-password" element={<ForgotPass />}></Route>
         <Route path="/reset-password" element={<ResetPass />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/show-courses" element={<ShowCourses/>}></Route>
         {/* <Route path='/courses' element={<Courses />}></Route> */}
-        <Route path="/checkout" element={<Payment />}></Route>
+        <Route path="/checkout/:courseId" element={<Payment />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
