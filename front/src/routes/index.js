@@ -12,6 +12,7 @@ import InsHome from "../pages/Instructor/ins-Home";
 import ShowCourses from "../pages/User/showCourses";
 import ShowAllCourses from "../pages/Instructor/showAllCourses";
 import ManageCourse from "../pages/Instructor/manageCourse";
+import InsCourses from "../pages/Instructor/insCourses";
 
 const Index = () => {
   return (
@@ -29,6 +30,7 @@ const Index = () => {
         <Route path="/show-courses" element={<ShowCourses/>}></Route>
         <Route path="/all-courses" element={<ShowAllCourses/>}></Route>
         <Route path="/manage-course" element={<ManageCourse/>}></Route>
+        <Route path="/ins-courses" element={<InsCourses/>}></Route>
         {/* <Route path='/courses' element={<Courses />}></Route> */}
         <Route path="/checkout/:courseId" element={<Payment />}></Route>
         </Routes>

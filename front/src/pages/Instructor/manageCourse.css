@@ -1,0 +1,33 @@
+/* src/instructor/manageCourse.css */
+
+.manage-course-container {
+    margin-bottom: 15px;
+  }
+  
+  .manage-course-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: black; /* Set font color to black */
+  }
+  
+  .manage-course-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    color: black; /* Set font color to black */
+  }
+  
+  .manage-course-container button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .manage-course-container button:hover {
+    background-color: #0056b3;
+  }
+  
