@@ -37,7 +37,7 @@ const ShowCourses = () => {
                 <Dashboard />
             </div>
             <div className="course-container">
-                <h2>Your Subscribed Courses</h2>
+                <h2 style={{textAlign: 'center'}}>Your Subscribed Courses</h2>
                 <div className="cards-container">
                     {courses.length > 0 ? (
                         courses.map(course => (

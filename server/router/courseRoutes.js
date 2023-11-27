@@ -166,16 +166,4 @@ router.get('/subscriptions/:userId', async (req, res) => {
 
 module.exports = router;
 
-module.exports = router;
 
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
