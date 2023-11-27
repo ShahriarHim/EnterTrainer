@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import './showCourses.css';
 import Dashboard from '../Comp/dashboard';
-import Image from '../Images/download.jpg';
+import Image from '../Images/Logo1.png';
 const ShowCourses = () => {
     const [courses, setCourses] = useState([]);
 

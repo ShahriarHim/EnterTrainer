@@ -4,7 +4,7 @@ import Footer from "./Comp/footer";
 import About from "./HomePage/about";
 import Carousel from "./HomePage/carousel";
 import Service from "./HomePage/service";
-import CourseCategories from "./Comp/categories";
+import CourseCategories from "./HomePage/categories";
 
 const HomePage = () => {
   return (

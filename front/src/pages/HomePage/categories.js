@@ -14,30 +14,32 @@ const CourseCategories = () => {
             <div className="row g-3">
               <div className="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
                 <a className="position-relative d-block overflow-hidden" href="">
-                  <img className="img-fluid" src="/assets/img/cat-1.jpg" alt="Web Design" />
+                  <img className="img-fluid" src="/assets/img/Piano.jpg" alt="Web Design" />
                   <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: '1px' }}>
-                    <h5 className="m-0">Web Design</h5>
-                    <small className="text-primary">49 Courses</small>
+                    <h5 className="m-0">Piano</h5>
+                    <small className="text-primary">1 Courses</small>
                   </div>
                 </a>
               </div>
               <div className="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
                 <a className="position-relative d-block overflow-hidden" href="">
-                  <img className="img-fluid" src="/assets/img/cat-2.jpg" alt="Graphic Design" />
+                  <img className="img-fluid" src="/assets/img/Violin.jpg" alt="Graphic Design" />
                   <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: '1px' }}>
-                    <h5 className="m-0">Graphic Design</h5>
-                    <small className="text-primary">49 Courses</small>
+                    <h5 className="m-0">Violin</h5>
+                    <small className="text-primary">2 Courses</small>
                   </div>
                 </a>
               </div>
               <div className="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
                 <a className="position-relative d-block overflow-hidden" href="">
-                  <img className="img-fluid" src="/assets/img/cat-3.jpg" alt="Video Editing" />
+                  <img className="img-fluid" src="/assets/img/Mic1.jpg" alt="Video Editing" />
                   <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: '1px' }}>
-                    <h5 className="m-0">Video Editing</h5>
-                    <small className="text-primary">49 Courses</small>
+                    <h5 className="m-0">Singing</h5>
+                    <small className="text-primary">1 Courses</small>
                   </div>
+                  
                 </a>
+                <p style={{color: 'orange', textAlign: 'center', fontSize: '70px'}}>And many more...</p>
               </div>
             </div>
           </div>
@@ -45,13 +47,13 @@ const CourseCategories = () => {
             <a className="position-relative d-block h-100 overflow-hidden" href="">
               <img
                 className="img-fluid position-absolute w-100 h-100"
-                src="/assets/img/cat-4.jpg"
+                src="/assets/img/guitar.jpg"
                 alt="Online Marketing"
                 style={{ objectFit: 'cover' }}
               />
               <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: '1px' }}>
-                <h5 className="m-0">Online Marketing</h5>
-                <small className="text-primary">49 Courses</small>
+                <h5 className="m-0">Guitar</h5>
+                <small className="text-primary">3 Courses</small>
               </div>
             </a>
           </div>

@@ -13,7 +13,7 @@ const Dashboard = () => {
         className="navbar-brand d-flex align-items-center px-4 px-lg-5"
       >
         <h2 className="m-0 text-primary">
-          <i className=""></i>Enter-Trainers
+          <i className=""></i>Enter-Trainer
         </h2>
       </Link>
       <button
