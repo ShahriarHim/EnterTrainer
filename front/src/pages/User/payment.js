@@ -52,7 +52,7 @@ const Payment = () => {
         if (response.ok) {
           const responseData = await response.json();
           setAlert(responseData.message); // Show subscription status
-          navigate('/home'); // Navigate to /home after successful subscription
+          navigate('/show-courses'); // Navigate to /home after successful subscription
         } else {
           throw new Error('Failed to subscribe'); // Throw error for non-successful response
         }

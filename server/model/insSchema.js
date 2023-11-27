@@ -11,6 +11,11 @@ const insSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userType: {
+    type: String,
+    default: 'INS',
+    required: false,
+  },
   phone: {
     type: Number,
     required: true,

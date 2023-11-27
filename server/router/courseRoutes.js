@@ -3,9 +3,6 @@ const router = express.Router();
 const Courses = require("../model/coursesSchema");
 const multer = require('multer');
 const Subscription = require('../model/subscription')
-const InstructorCourse = require('../model/instructorCourseSchema');
-const passport = require('passport'); // Assuming you have Passport configured
-
 // const upload = require("../multerConfig");
 
 router.post("/create-course",  async (req, res) => {
@@ -136,10 +133,6 @@ router.get('/subscriptions/:userId', async (req, res) => {
   try {
     const userId = req.params.userId; // Extracting user ID from the request parameter
 
-<<<<<<< HEAD
-    // Assuming you want to send back the course details as well
-    const courses = await Courses.find({ _id: { $in: subscriptions.map(sub => sub.courseId) } });
-=======
     // Find subscriptions for the given user ID and populate course details
     const userSubscriptions = await Subscription.find({ user_Id: userId })
       .populate({
@@ -147,7 +140,6 @@ router.get('/subscriptions/:userId', async (req, res) => {
         select: 'name genre details' // Update to select 'name' field from the Courses model
       })
       .exec();
->>>>>>> ad76b7176e3e37ec04859bbb2aaafec10e73a4b8
 
     // Check if userSubscriptions array is empty
     if (userSubscriptions.length === 0) {
@@ -172,65 +164,6 @@ router.get('/subscriptions/:userId', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-router.post("/instructor/courses", async (req, res) => {
-  try {
-    const instructorId = req.body.instructorId; // Assuming the instructorId is sent in the request body
-
-    // Find all courses associated with the given instructorId
-    const courses = await InstructorCourse.find({ instructorId })
-      .populate('courseId'); // This will populate the 'courseId' field with the actual course details
-
-    res.json(courses);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
-=======
 module.exports = router;
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ad76b7176e3e37ec04859bbb2aaafec10e73a4b8
-
-
-// Route for instructors to join courses
-router.post('/instructor-courses', async (req, res) =>  {
-  const { instructorId, courseId } = req.body;
-
-  try {
-    // Check if the instructor is already associated with the course
-    const existingAssociation = await InstructorCourse.findOne({
-      instructorId,
-      courseId,
-    });
-
-    if (existingAssociation) {
-      return res.status(422).json({ error: 'Instructor is already associated with this course' });
-    }
-
-    // Create a new association between the instructor and the course
-    const newAssociation = new InstructorCourse({
-      instructorId,
-      courseId,
-    });
-
-    await newAssociation.save();
-
-    res.status(201).json({
-      success: true,
-      message: 'Instructor joined the course successfully',
-      association: newAssociation,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Something went wrong' });
-  }
-});
-
-module.exports = router;
->>>>>>> ccc1017b792e77a6e75a5233e6ae8c53f6c7d63d

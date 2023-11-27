@@ -7,6 +7,7 @@ const InsJoin = () => {
   const [formData, setFormData] = useState({
     email: '',
     name: '',
+    userType: 'INS',
     phone: '',
     password: '',
     cpassword: '',
@@ -25,6 +26,7 @@ const InsJoin = () => {
         body: JSON.stringify({
           email: formData.email,
           name: formData.name,
+          userType: formData.userType,
           phone: formData.phone,
           password: formData.password,
           cpassword: formData.cpassword,
@@ -68,7 +70,8 @@ const InsJoin = () => {
 
       if (response.ok) {
         alert('Logged in as Instructor!');
-        navigate('/ins-home');
+        localStorage.setItem('jw_token', data.token);
+        navigate('/home');
       } else {
 
         alert('Invalid credentials! Try again');
@@ -183,6 +186,16 @@ const InsJoin = () => {
                 name="name"
                 placeholder="Full Name"
                 value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="field">
+              <input
+                type="text"
+                name="userType"
+                placeholder="Role"
+                value='INS'
                 onChange={handleChange}
                 required
               />

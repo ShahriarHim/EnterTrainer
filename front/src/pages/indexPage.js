@@ -1,27 +1,35 @@
-import React from "react";
-// import Navbar from "./Comp/navbar";
-import Footer from "./Comp/footer";
-import Dashboard from "./Comp/dashboard";
-// import About from "./HomePage/about";
-// import Carousel from "./HomePage/carousel";
-// import Service from "./HomePage/service";
-import FilterInterest from "./Filter/filter_Interest";
-// import ShowCourses from "./User/showCourses";
-// import FilterInterest from "./Filter/demo1";
-
+import React, { useEffect, useState } from 'react';
+import Footer from './Comp/footer';
+import Dashboard from './Comp/dashboard';
+import FilterInterest from './Filter/filter_Interest';
+import ShowAllCourses from './Instructor/showAllCourses'; // Import the ShowAllCourses component
+import jwt_decode from 'jwt-decode';
 
 const IndexPage = () => {
+  const [isInstructor, setIsInstructor] = useState(false);
+
+  useEffect(() => {
+    // Retrieve the JWT token from localStorage
+    const token = localStorage.getItem('jw_token');
+  
+    // Decode the JWT token to extract user information
+    const decodedToken = jwt_decode(token);
+    console.log('Decoded token:', decodedToken); // Log the decoded token to check its structure
+  
+    const userType = decodedToken.userType;
+  
+    // Check if the userType in the decoded token is 'INS'
+    if (userType === 'INS') {
+      setIsInstructor(true);
+    }
+  }, []);
+
   return (
     <div>
-
       <Dashboard />
-      <FilterInterest />
-      {/* <iframe width="600" height="300" src="https://www.youtube.com/embed/oMLJn5DB2j0" title="Ruth B. - Dandelions (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
-      {/* <FilterInterest /> */}
+      {isInstructor ? <ShowAllCourses /> : <FilterInterest /> }
       <h2 style={{ textAlign: 'center' }}>Welcome after Login</h2>
-      {/* <ShowCourses/> */}
       <Footer />
-
     </div>
   );
 };

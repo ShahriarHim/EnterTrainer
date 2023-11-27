@@ -292,6 +292,7 @@ router.post("/ins-signup", async (req, res) => {
       const user = new Instructor({
         email,
         name,
+        userType: 'INS',
         phone,
         password,
         cpassword,
@@ -305,6 +306,7 @@ router.post("/ins-signup", async (req, res) => {
           user: {
             id: user._id,
             username: user.name,
+            userType: user.userType
           },
         });
       } else {
@@ -341,13 +343,14 @@ router.post("/ins-signin", async (req, res) => {
   const payload = {
     id: user._id,
     username: user.name,
+    userType: user.userType
   };
   const token = jwt.sign(payload, process.env.SECRET_KEY, {
     expiresIn: "2d",
   });
   res.cookie("jw_token", token, {
     httpOnly: true, // This makes the cookie inaccessible from JavaScript
-    secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+    // secure: process.env.NODE_ENV === "production", // Use secure cookies in production
     maxAge: 2 * 24 * 60 * 60 * 1000, // Cookie expiration time (2 days)
   });
   return res.status(200).send({

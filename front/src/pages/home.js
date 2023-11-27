@@ -5,6 +5,7 @@ import About from "./HomePage/about";
 import Carousel from "./HomePage/carousel";
 import Service from "./HomePage/service";
 import CourseCategories from "./HomePage/categories";
+import Instructors from "./HomePage/instructors";
 
 const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ const HomePage = () => {
    
       <Navbar />
       <Carousel />
+      <Instructors />
       <CourseCategories />
       <Service />
       <About />

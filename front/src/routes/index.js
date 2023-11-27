@@ -7,9 +7,12 @@ import ForgotPass from "../pages/ResetPass/forgotPass";
 import ResetPass from "../pages/ResetPass/resetPass";
 import Profile from "../pages/Profile/profile";
 // import Courses from "../pages/Comp/courses";
-import Payment from "../pages/Comp/payment";
+import Payment from "../pages/User/payment";
 import InsHome from "../pages/Instructor/ins-Home";
 import ShowCourses from "../pages/User/showCourses";
+import ShowAllCourses from "../pages/Instructor/showAllCourses";
+import ManageCourse from "../pages/Instructor/manageCourse";
+
 const Index = () => {
   return (
     <div>
@@ -24,6 +27,8 @@ const Index = () => {
         <Route path="/reset-password" element={<ResetPass />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/show-courses" element={<ShowCourses/>}></Route>
+        <Route path="/all-courses" element={<ShowAllCourses/>}></Route>
+        <Route path="/manage-course" element={<ManageCourse/>}></Route>
         {/* <Route path='/courses' element={<Courses />}></Route> */}
         <Route path="/checkout/:courseId" element={<Payment />}></Route>
         </Routes>
