@@ -8,11 +8,11 @@ import ResetPass from "../pages/ResetPass/resetPass";
 import Profile from "../pages/Profile/profile";
 // import Courses from "../pages/Comp/courses";
 import Payment from "../pages/User/payment";
-import InsHome from "../pages/Instructor/ins-Home";
-import ShowCourses from "../pages/User/showCourses";
+import EnrolledCourses from "../pages/User/enrolledCourses";
 import ShowAllCourses from "../pages/Instructor/showAllCourses";
-import ManageCourse from "../pages/Instructor/manageCourse";
+import ManageCourse from "../pages/InsideCourse/manageCourse";
 import InsCourses from "../pages/Instructor/insCourses";
+import TakenCourses from "../pages/Instructor/takenCourses";
 
 const Index = () => {
   return (
@@ -21,13 +21,13 @@ const Index = () => {
         <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/home" element={<IndexPage />}></Route>
-        <Route path="/ins-home" element={<InsHome />}></Route>
         <Route path="/joinform" element={<JoinForm />}></Route>
         <Route path="/ins-join" element={<InsJoin />}></Route>
         <Route path="/forgot-password" element={<ForgotPass />}></Route>
         <Route path="/reset-password" element={<ResetPass />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/show-courses" element={<ShowCourses/>}></Route>
+        <Route path="/enrolled-courses" element={<EnrolledCourses/>}></Route>
+        <Route path="/taken-courses" element={<TakenCourses/>}></Route>
         <Route path="/all-courses" element={<ShowAllCourses/>}></Route>
         <Route path="/manage-course" element={<ManageCourse/>}></Route>
         <Route path="/ins-courses" element={<InsCourses/>}></Route>

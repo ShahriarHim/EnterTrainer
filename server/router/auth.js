@@ -152,6 +152,7 @@ router.post("/signup", async (req, res) => {
       const user = new User({
         email,
         name,
+        userType: 'Student',
         phone,
         password,
         cpassword,
@@ -202,6 +203,7 @@ router.post("/signin", async (req, res) => {
     const payload = {
       id: user._id,
       username: user.name,
+      userType: user.userType
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "2d" });
 

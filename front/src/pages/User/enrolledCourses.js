@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import './showCourses.css';
+import './enrolledCourses.css';
 import Dashboard from '../Comp/dashboard';
-import Image from '../Images/Logo1.png';
-const ShowCourses = () => {
+
+const EnrolledCourses = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -39,13 +39,13 @@ const ShowCourses = () => {
             <div className="course-container">
                 <h2 style={{textAlign: 'center'}}>Your Subscribed Courses</h2>
                 <div className="cards-container">
-                    {courses.length > 0 ? (
+                    {courses.length >= 0 ? (
                         courses.map(course => (
                             <div className="card" key={course.courseId}>
                                 <div className="left-section">
                                     <div className="photo">
                                         {/* Use the image */}
-                                        <img src={Image} alt="Course Thumbnail" />
+                                        <img src='/assets/img/Logo3.png' alt="Course Thumbnail" />
                                     </div>
                                     <div className="line"></div>
                                 </div>
@@ -75,4 +75,4 @@ const ShowCourses = () => {
 };
 
 
-export default ShowCourses;
+export default EnrolledCourses;

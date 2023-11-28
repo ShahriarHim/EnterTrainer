@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const CourseContent = require("../model/courseContentSchema");
 const InstructorCourse = require("../model/instructorCourseSchema");
+const Message = require("../model/messageSchema");
+
 
 // Middleware to check if the instructor is associated with the course
 const checkInstructorAssociation = async (req, res, next) => {
@@ -77,5 +79,41 @@ router.get("/get-course-content/:courseId/:weekNumber", checkInstructorAssociati
 });
 
 // Add more routes for updating, deleting, or retrieving all course content if needed
+
+router.post('/messages', async (req, res) => {
+  try {
+    const { courseId, userId, message } = req.body;
+
+    const newMessage = new Message({
+      courseId,
+      userId,
+      message,
+      // Add other message-related fields if needed
+    });
+
+    const savedMessage = await newMessage.save();
+    res.status(201).json(savedMessage);
+  } catch (error) {
+    console.error('Error sending message:', error);
+    res.status(500).json({ error: 'Failed to send message' });
+  }
+});
+
+router.get('/messages/:courseId', async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const messages = await Message.find({ courseId }).populate('userId', 'username');
+
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error('Error fetching messages:', error.message);
+    res.status(500).json({ error: 'Failed to fetch messages' });
+  }
+});
+
+
+
+
+
 
 module.exports = router;

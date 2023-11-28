@@ -7,10 +7,10 @@ const Courses = ({ courses }) => {
 
   const handleStartCourse = (courseId) => {
 
-      navigate(`/checkout/${courseId}`);
+    navigate(`/checkout/${courseId}`);
 
   };
-  
+
 
   return (
     <div>
@@ -23,9 +23,13 @@ const Courses = ({ courses }) => {
                 key={course._id}
                 className="course-card"
               >
-                <h3 style={{ color: '#fff', textAlign: 'center' }}>{course.name}</h3>
-                <p style={{ color: 'black', textAlign: 'center' }}>{course.details}</p>
-                <button onClick={() => handleStartCourse(course._id)}>Start Course</button>
+                <div className="course-card-content">
+                  <h3 style={{ color: '#fff', textAlign: 'center' }}>{course.name}</h3>
+                  <p style={{ color: 'black', textAlign: 'center' }}>{course.details}</p>
+                  <div className="button-container">
+                    <button onClick={() => handleStartCourse(course._id)}>Start Course</button>
+                  </div>
+                </div>
               </div>
             );
           })
@@ -34,6 +38,7 @@ const Courses = ({ courses }) => {
         )}
       </div>
     </div>
+
   );
 };
 

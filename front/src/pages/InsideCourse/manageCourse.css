@@ -1,0 +1,59 @@
+/* manageCourse.css */
+
+.manage-course-container {
+  width: 90%; /* Set the width as needed */
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-links a {
+  margin-right: 10px;
+}
+
+.course-name {
+  font-size: 24px;
+}
+
+.manage-add-week {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.manage-course {
+  font-size: 20px;
+}
+
+.add-week-button {
+  padding: 8px 16px;
+  background-color: #06BBCC;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.week-section {
+  margin-top: 20px;
+}
+
+.week-button {
+  padding: 8px 16px;
+  background-color: #06BBCC;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.nested-buttons {
+  margin-top: 10px;
+}
+
+/* Add further styling and formatting as needed */

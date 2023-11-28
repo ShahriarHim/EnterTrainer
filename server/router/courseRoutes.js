@@ -165,22 +165,46 @@ router.get('/subscriptions/:userId', async (req, res) => {
   }
 });
 
-router.post("/instructor/courses", async (req, res) => {
+router.get('/Instructor/:instructorId', async (req, res) => {
   try {
-    const instructorId = req.body.instructorId; // Assuming the instructorId is sent in the request body
+    const insId = req.params.instructorId;
 
-    // Find all courses associated with the given instructorId
-    const courses = await InstructorCourse.find({ instructorId })
-      .populate('courseId'); // This will populate the 'courseId' field with the actual course details
+    
+    const insCourses = await InstructorCourse.find({ instructorId: insId })
+      .populate({
+        path: 'courseId',
+        select: 'name genre details' 
+      })
+      .exec();
 
-    res.json(courses);
+   
+    if (insCourses.length === 0) {
+      return res.json({ message: 'No subscriptions yet for this user.' });
+    }
+
+    
+    const coursesTaken = insCourses.map(insCourses => {
+      return {
+        courseId: insCourses.courseId._id,
+        courseName: insCourses.courseId.name, 
+        genre: insCourses.courseId.genre,
+        details: insCourses.courseId.details,
+      };
+    });
+
+    res.json({ coursesTaken });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ error: 'Server Error' });
   }
 });
+
+
+
+
+
 // Route for instructors to join courses
-router.post('/instructor-courses', async (req, res) =>  {
+router.post('/instructor-enrollment', async (req, res) =>  {
   const { instructorId, courseId } = req.body;
 
   try {

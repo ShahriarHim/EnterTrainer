@@ -32,9 +32,9 @@ const ShowAllCourses = () => {
     const handleTakeCourse = (courseId) => {
 
         navigate(`/checkout/${courseId}`);
-  
+
     };
-    
+
 
     return (
         <div>
@@ -72,9 +72,13 @@ const ShowAllCourses = () => {
                             key={course._id}
                             className="course-card"
                         >
-                            <h3 style={{ color: '#fff', textAlign: 'center' }}>{course.name}</h3>
-                            <p style={{ color: 'black', textAlign: 'center' }}>{course.details}</p>
-                            <button onClick={() => handleTakeCourse(course._id)}>Take Course</button>
+                            <div className="course-card-content">
+                                <h3 style={{ color: '#fff', textAlign: 'center' }}>{course.name}</h3>
+                                <p style={{ color: 'black', textAlign: 'center' }}>{course.details}</p>
+                                <div className="button-container">
+                                    <button onClick={() => handleTakeCourse(course._id)}>Add Course</button>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

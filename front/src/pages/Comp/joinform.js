@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import "./joinForm.css";
 
 const JoinForm = () => {
   const navigate = useNavigate();
@@ -8,10 +8,11 @@ const JoinForm = () => {
     email: '',
     name: '',
     phone: '',
+    userType: 'Student',
     password: '',
     cpassword: '',
   });
-  
+
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +26,7 @@ const JoinForm = () => {
         body: JSON.stringify({
           email: formData.email,
           name: formData.name,
+          userType: formData.userType,
           phone: formData.phone,
           password: formData.password,
           cpassword: formData.cpassword,
@@ -78,7 +80,7 @@ const JoinForm = () => {
     } catch (error) {
       console.error('Error during login:', error);
     }
-    
+
   };
 
 
@@ -190,6 +192,16 @@ const JoinForm = () => {
                 name="name"
                 placeholder="Full Name"
                 value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="field">
+              <input
+                type="text"
+                name="userType"
+                placeholder="Role"
+                value='Student'
                 onChange={handleChange}
                 required
               />

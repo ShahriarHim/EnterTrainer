@@ -6,13 +6,13 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+/* body {
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     padding:  0;
-}
+} */
 
 .card {
     backdrop-filter: blur(16px) saturate(180%);
