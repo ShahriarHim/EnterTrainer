@@ -68,7 +68,7 @@ const Dashboard = () => {
             </a>
           ) : null}
           {userType === 'Student' && (
-            <a to="" className="nav-item nav-link" onClick={() => handleNavigation('/community')}>
+            <a to="" className="nav-item nav-link" onClick={() => handleNavigation('/chat')}>
               Community
             </a>
           )}

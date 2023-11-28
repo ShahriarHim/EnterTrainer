@@ -16,11 +16,18 @@
   background: #fa4299;
   color: #fff;
 }
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this if needed */
+  background-color: #f0f0f0; /* Optional: Change the background color */
+}
 .wrapper{
   overflow: hidden;
   max-width: 390px;
   background: #fff;
-  padding: 30px;
+  padding: 25px;
   border-radius: 5px;
   box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
 }
@@ -30,7 +37,7 @@
 }
 .wrapper .title{
   width: 50%;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
   text-align: center;
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
@@ -38,10 +45,10 @@
 .wrapper .slide-controls{
   position: relative;
   display: flex;
-  height: 50px;
+  height: 45px;
   width: 100%;
   overflow: hidden;
-  margin: 30px 0 10px 0;
+  margin: 10px 0 10px 0;
   justify-content: space-between;
   border: 1px solid lightgrey;
   border-radius: 5px;
@@ -68,7 +75,7 @@
   left: 0;
   z-index: 0;
   border-radius: 5px;
-  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+  background: -webkit-linear-gradient(left, #174946, rgb(67, 224, 255));
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 input[type="radio"]{
@@ -107,7 +114,7 @@ input[type="radio"]{
 .form-inner form .field{
   height: 50px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .form-inner form .field input{
   height: 100%;
@@ -136,7 +143,7 @@ form .field input:focus::placeholder{
 }
 .form-inner form .signup-link{
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .form-inner form .pass-link a,
 .form-inner form .signup-link a{
@@ -148,7 +155,7 @@ form .field input:focus::placeholder{
   text-decoration: underline;
 }
 form .btn{
-  height: 50px;
+  height: 60px;
   width: 100%;
   border-radius: 5px;
   position: relative;
@@ -159,7 +166,7 @@ form .btn .btn-layer{
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+  background: -webkit-linear-gradient(right, #ffffff, #a7f6f8, #32d0cb, #0e3629);
   border-radius: 5px;
   transition: all 0.4s ease;;
 }
@@ -176,7 +183,10 @@ form .btn input[type="submit"]{
   color: #fff;
   padding-left: 0;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
 }
+
+
+

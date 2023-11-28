@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
-import { Link , useNavigate} from 'react-router-dom';
+import React from 'react';
+// import axios from "axios";
+import { NavLink } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -11,14 +11,14 @@ const Navbar = () => {
   return (
     // Navbar Start
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-      <Link
+      <NavLink
         to="/"
         className="navbar-brand d-flex align-items-center px-4 px-lg-5"
       >
         <h2 className="m-0 text-primary">
           <i className=""></i>Enter-Trainer
         </h2>
-      </Link>
+      </NavLink>
       <button
         type="button"
         className="navbar-toggler me-4"
@@ -28,26 +28,26 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarCollapse">
-        
+
         <div className="navbar-nav ms-auto p-4 p-lg-0">
-          <Link to="/" className="nav-item nav-link active">
+          <NavLink to="/" className="nav-item nav-link active">
             Home
-          </Link>
-          <Link to="/about" className="nav-item nav-link">
+          </NavLink>
+          <NavLink to="/about" className="nav-item nav-link">
             About
-          </Link>
-          <Link to="/courses" className="nav-item nav-link">
-            Courses
-          </Link>
-          <div className="nav-item dropdown">
-            <Link
+          </NavLink>
+          <NavLink to="/categories" className="nav-item nav-link">
+            Categories
+          </NavLink>
+          {/*<div className="nav-item dropdown">
+             <Link
               to="#"
               className="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"
             >
               Pages
-            </Link>
-            <div className="dropdown-menu fade-down m-0">
+            </Link> */}
+          {/* <div className="dropdown-menu fade-down m-0">
               <Link to="/team" className="dropdown-item">
                 Our Team
               </Link>
@@ -62,12 +62,13 @@ const Navbar = () => {
           <Link to="/contact" className="nav-item nav-link">
             Contact
           </Link>
-        </div>
+        </div> */}
 
-          <Link to="/joinform" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+          <NavLink to="/joinform" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
             Join Now<i className="fa fa-arrow-right ms-3"></i>
-          </Link>
-          
+          </NavLink>
+
+        </div>
       </div>
     </nav>
     // Navbar End

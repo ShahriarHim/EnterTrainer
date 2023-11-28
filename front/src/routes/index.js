@@ -13,6 +13,10 @@ import ShowAllCourses from "../pages/Instructor/showAllCourses";
 import ManageCourse from "../pages/InsideCourse/manageCourse";
 import InsCourses from "../pages/Instructor/insCourses";
 import TakenCourses from "../pages/Instructor/takenCourses";
+import About from "../pages/HomePage/about";
+import CourseCategories from "../pages/HomePage/categories";
+import CourseBar from "../pages/User/courseBar";
+
 
 const Index = () => {
   return (
@@ -21,11 +25,14 @@ const Index = () => {
         <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/home" element={<IndexPage />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/categories" element={<CourseCategories />}></Route>
         <Route path="/joinform" element={<JoinForm />}></Route>
         <Route path="/ins-join" element={<InsJoin />}></Route>
         <Route path="/forgot-password" element={<ForgotPass />}></Route>
         <Route path="/reset-password" element={<ResetPass />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/chat" element={<CourseBar />}></Route>
         <Route path="/enrolled-courses" element={<EnrolledCourses/>}></Route>
         <Route path="/taken-courses" element={<TakenCourses/>}></Route>
         <Route path="/all-courses" element={<ShowAllCourses/>}></Route>

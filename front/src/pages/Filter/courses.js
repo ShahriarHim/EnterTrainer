@@ -34,7 +34,7 @@ const Courses = ({ courses }) => {
             );
           })
         ) : (
-          <p>No courses available.</p>
+          <p>No courses to show.</p>
         )}
       </div>
     </div>

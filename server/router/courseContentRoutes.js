@@ -102,7 +102,7 @@ router.post('/messages', async (req, res) => {
 router.get('/messages/:courseId', async (req, res) => {
   try {
     const courseId = req.params.courseId;
-    const messages = await Message.find({ courseId }).populate('userId', 'username');
+    const messages = await Message.find({ courseId }).populate('userId', 'name');
 
     res.status(200).json(messages);
   } catch (error) {
