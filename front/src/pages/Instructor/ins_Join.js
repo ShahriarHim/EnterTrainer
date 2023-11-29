@@ -167,9 +167,9 @@ const InsJoin = () => {
               </div>
               <div className="signup-link">
 
-                <a href="/joinform" style={{ display: 'block', textAlign: 'center' }}>
+                <Link to="/joinform" style={{ display: 'block', textAlign: 'center' }}>
                   Join as a Student
-                </a>
+                </Link>
               </div>
               <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
                 Go to Home

@@ -9,10 +9,26 @@ const Payment = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [alert, setAlert] = useState('');
   const { courseId } = useParams(); // State to store courseId
+  const [userId, setUserId] = useState('');
+  const [userType, setUserType] = useState('');
+  const [token, setToken] = useState('');
+
 
   useEffect(() => {
-    console.log(localStorage.getItem('jw_token'));
+    const token = localStorage.getItem('jw_token');
+    const decodedToken = jwt_decode(token);
+    const { id, userType } = decodedToken;
+
+    // Set the values in state
+    setUserId(id);
+    setUserType(userType);
+    setToken(token);
+
+    console.log('Token:', token);
+    console.log('User ID:', id);
+    console.log('User Type:', userType);
   }, []);
+
 
 
 
@@ -29,18 +45,39 @@ const Payment = () => {
 
   const handlePayment = async () => {
     try {
-      if (cardNumber.length === 10) {
-        const token = localStorage.getItem('jw_token');
+      if (userType === 'Student') {
+        if (cardNumber.length === 10) {
+          // const token = localStorage.getItem('jw_token');
 
-        // Decode the token to get user data
-        const decodedToken = jwt_decode(token);
-        const userId = decodedToken.id;
+          // Decode the token to get user data
+          // const decodedToken = jwt_decode(token);
+          // const userId = decodedToken.id;
 
 
-        const requestBody = JSON.stringify({ user_Id: userId, course_Id: courseId });
-        // console.log('userId', userId);
-        // console.log("course Id", courseId);
-        const response = await fetch('http://localhost:5000/course/subscribe', {
+
+          const requestBody = JSON.stringify({ user_Id: userId, course_Id: courseId });
+          // console.log('userId', userId);
+          // console.log("course Id", courseId);
+          const response = await fetch('http://localhost:5000/course/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`, // Include the JWT token in the header
+            },
+            body: requestBody,
+          });
+
+          if (response.ok) {
+            const responseData = await response.json();
+            setAlert(responseData.message);
+            navigate('/enrolled-courses');
+          } else {
+            throw new Error('Failed to subscribe');
+          }
+        };
+      } else {
+        const requestBody = JSON.stringify({ instructorId: userId, courseId: courseId });
+        const response = await fetch('http://localhost:5000/course/instructor-enrollment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,14 +85,15 @@ const Payment = () => {
           },
           body: requestBody,
         });
-
         if (response.ok) {
           const responseData = await response.json();
-          setAlert(responseData.message); // Show subscription status
-          navigate('/enrolled-courses'); // Navigate to /home after successful subscription
+          // alert('Courses Added!');
+          setAlert(responseData.message);
+          navigate('/taken-courses');
         } else {
-          throw new Error('Failed to subscribe'); // Throw error for non-successful response
+          throw new Error('Failed to Add');
         }
+
       }
     } catch (error) {
       console.error('Fetch request failed:', error);
@@ -68,64 +106,106 @@ const Payment = () => {
 
 
   return (
-    <div className="container p-0">
+    <div className="centered-container">
       <div className="card px-4">
-        <p className="h8 py-3">Payment Details</p>
-        <div className="row gx-3">
-          <div className="col-12">
-            <div className="d-flex flex-column">
-              <p className="text mb-1">Person Name</p>
-              <input 
-              className="form-control mb-3" 
-              type="text" 
-              placeholder="Name" 
-              />
+        {userType === 'Student' && (
+          <p className="h8 py-3">Payment Details</p>
+        )}
+        {userType === 'Student' && (
+          <div className="row gx-3">
+            {/* Person Name input */}
+            <div className="col-12">
+              <div className="d-flex flex-column">
+                <p className="text mb-1">Person Name</p>
+                <input
+                  className="form-control mb-3"
+                  type="text"
+                  placeholder="Name"
+                />
+              </div>
             </div>
+
+            {/* Card Number input */}
+            <div className="col-12">
+              <div className="d-flex flex-column">
+                <p className="text mb-1">Card Number</p>
+                <input
+                  className="form-control mb-3"
+                  type="text"
+                  placeholder="1234 5678 435678"
+                  value={cardNumber}
+                  onChange={handleCardNumberChange}
+                  maxLength="10"
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex flex-column">
+                <p class="text mb-1">Expiry</p>
+                <input
+                  className="form-control mb-3"
+                  type="text"
+                  placeholder="MM/YYYY"
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex flex-column">
+                <p class="text mb-1">CVV/CVC</p>
+                <input
+                  className="form-control mb-3 pt-2 "
+                  type="password"
+                  placeholder="***"
+                />
+              </div>
+            </div>
+
+
           </div>
+        )}
+        {userType === 'INS' && (
           <div className="col-12">
+            <br></br><br></br>
             <div className="d-flex flex-column">
-              <p className="text mb-1">Card Number</p>
+              <p className="text mb-1">Enter Instructor ID</p>
               <input
                 className="form-control mb-3"
                 type="text"
-                placeholder="1234 5678 435678"
-                value={cardNumber}
-                onChange={handleCardNumberChange}
-                maxLength="10"
+                placeholder="Instructor ID"
               />
             </div>
           </div>
-          <div class="col-6">
-            <div class="d-flex flex-column">
-              <p class="text mb-1">Expiry</p>
-              <input 
-                className="form-control mb-3"
-                type="text" 
-                placeholder="MM/YYYY"
-                />
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="d-flex flex-column">
-              <p class="text mb-1">CVV/CVC</p>
-              <input 
-              className="form-control mb-3 pt-2 "
-              type="password" 
-              placeholder="***"
-              />
-            </div>
-          </div>
-          {alert && <p className="alert">{alert}</p>}
-          <div className="col-12">
-            <div className="btn btn-primary mb-3" onClick={handlePayment}>
-              <span className="ps-3">Enroll</span>
-              <span className="fas fa-arrow-right"></span>
-            </div>
+        )}
+
+        {/* Alert message */}
+        {alert && <p className="alert">{alert}</p>}
+
+        {/* Enrollment/Confirmation button */}
+        <div className="col-12">
+          <div
+            className="btn btn-primary mb-3"
+            onClick={handlePayment}
+          >
+            {/* Button text based on user type */}
+            {userType === 'INS' ? (
+              <>
+                <span className="ps-3">Confirm</span>
+                <span className="fas fa-arrow-right"></span>
+              </>
+            ) : (
+              <>
+                <span className="ps-3">Enroll</span>
+                <span className="fas fa-arrow-right"></span>
+              </>
+
+            )}
           </div>
         </div>
       </div>
     </div>
-  );
+
+  )
 };
+
 
 export default Payment;

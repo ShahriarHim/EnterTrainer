@@ -109,6 +109,8 @@ const JoinForm = () => {
     signupBtn.click();
   };
 
+
+
   return (
     <div className="center-wrapper">
       <div className="wrapper">
@@ -167,9 +169,9 @@ const JoinForm = () => {
               </div>
               <div className="signup-link">
 
-                <a href="/ins-join" style={{ display: 'block', textAlign: 'center' }}>
+                <Link to="/ins-join" style={{ display: 'block', textAlign: 'center' }}>
                   Join as an Instructor
-                </a>
+                </Link>
               </div>
               <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
                 Go to Home
@@ -203,7 +205,7 @@ const JoinForm = () => {
                   name="userType"
                   placeholder="Role"
                   value='Student'
-                  onChange={handleChange}me
+                  onChange={handleChange} me
                   required
                 />
               </div>

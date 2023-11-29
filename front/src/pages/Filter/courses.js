@@ -34,7 +34,7 @@ const Courses = ({ courses }) => {
             );
           })
         ) : (
-          <p>No courses to show.</p>
+          <p>No courses to show.Filter interest First!</p>
         )}
       </div>
     </div>

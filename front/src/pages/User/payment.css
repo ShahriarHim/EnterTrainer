@@ -40,4 +40,12 @@
     cursor: pointer;
     width: 100%; /* Make the button width 100% to center it */
   }
-  
+
+  .centered-container {
+    padding-left: 400px;
+    width: 1000px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 70vh; /* Adjust height as needed */
+  }
