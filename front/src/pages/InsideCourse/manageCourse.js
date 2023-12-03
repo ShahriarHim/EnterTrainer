@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import './manageCourse.css';
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ const ManageCourse = () => {
   const [progress, setProgress] = useState(0);
   const [courseName, setCourseName] = useState('');
   const { courseId } = useParams();
+  const [userType, setUserType] = useState('');
   const handleNavigate = (route) => {
     navigate(route);
   };
@@ -41,6 +43,11 @@ const ManageCourse = () => {
     };
 
     fetchCourseDetails();
+    const token = localStorage.getItem('jw_token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setUserType(decodedToken.userType);
+    }
 
   }, [courseId]);
 
@@ -223,9 +230,11 @@ const ManageCourse = () => {
         {/* Manage and Add Week */}
         <div className="manage-add-week">
           <div className="manage-course">Manage Course</div>
+          {userType === 'INS' && (
           <button className="add-week-button" onClick={handleAddWeek}>
             Add Week
           </button>
+          )}
         </div>
 
         {/* Week Sections */}
@@ -266,10 +275,11 @@ const ManageCourse = () => {
                           ))}
                         </div>
                       )}
-
+                      {userType === 'INS' && (
                       <button type="button" onClick={handleUpdateWeekData}>
                         Update Data
                       </button>
+                      )}
                     </>
                   ) : (
                     // Display input fields for new data
