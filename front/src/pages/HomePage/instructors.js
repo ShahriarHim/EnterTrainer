@@ -35,8 +35,8 @@ const Instructors = () => {
               </div>
             </div>
             <div className="text-center p-4">
-              <h5 className="mb-0">Instructor Name</h5>
-              <small>Designation</small>
+              <h5 className="mb-0">Sheikh Jubayer</h5>
+              <small>Instructor</small>
             </div>
           </div>
         </div>
@@ -62,8 +62,8 @@ const Instructors = () => {
               </div>
             </div>
             <div className="text-center p-4">
-              <h5 className="mb-0">Instructor Name</h5>
-              <small>Designation</small>
+              <h5 className="mb-0">Zinia Rahman</h5>
+              <small>Instructor</small>
             </div>
           </div>
         </div>
@@ -89,8 +89,8 @@ const Instructors = () => {
               </div>
             </div>
             <div className="text-center p-4">
-              <h5 className="mb-0">Instructor Name</h5>
-              <small>Designation</small>
+              <h5 className="mb-0">Latif Haque</h5>
+              <small>Instructor</small>
             </div>
           </div>
         </div>
@@ -116,8 +116,8 @@ const Instructors = () => {
               </div>
             </div>
             <div className="text-center p-4">
-              <h5 className="mb-0">Instructor Name</h5>
-              <small>Designation</small>
+              <h5 className="mb-0">Tasnim Ayesha</h5>
+              <small>Instructor</small>
             </div>
           </div>
         </div>

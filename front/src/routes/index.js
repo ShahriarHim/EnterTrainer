@@ -16,7 +16,7 @@ import TakenCourses from "../pages/Instructor/takenCourses";
 import About from "../pages/HomePage/about";
 import CourseCategories from "../pages/HomePage/categories";
 import CourseBar from "../pages/User/courseBar";
-
+import Resource from "../pages/Comp/resource";
 
 const Index = () => {
   return (
@@ -36,9 +36,10 @@ const Index = () => {
         <Route path="/enrolled-courses" element={<EnrolledCourses/>}></Route>
         <Route path="/taken-courses" element={<TakenCourses/>}></Route>
         <Route path="/all-courses" element={<ShowAllCourses/>}></Route>
-        <Route path="/manage-course" element={<ManageCourse/>}></Route>
+        <Route path="/manage-course/:courseId" element={<ManageCourse/>}></Route>
         <Route path="/ins-courses" element={<InsCourses/>}></Route>
         {/* <Route path='/courses' element={<Courses />}></Route> */}
+        <Route path="/resource" element={<Resource/>}></Route>
         <Route path="/checkout/:courseId" element={<Payment />}></Route>
         </Routes>
       </BrowserRouter>

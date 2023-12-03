@@ -74,6 +74,7 @@ const ShowAllCourses = () => {
                         >
                             <div className="course-card-content">
                                 <h3 style={{ color: '#fff', textAlign: 'center' }}>{course.name}</h3>
+                                <h6  style={{ color: 'green', textAlign: 'center' }}> Genre: {course.genre}</h6>
                                 <p style={{ color: 'black', textAlign: 'center' }}>{course.details}</p>
                                 <div className="button-container">
                                     <button onClick={() => handleTakeCourse(course._id)}>Add Course</button>

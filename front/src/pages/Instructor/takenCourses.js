@@ -8,10 +8,9 @@ import Dashboard from '../Comp/dashboard';
 const TakenCourses = () => {
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
-    const handleManageCourse = () =>{
-        navigate('/manage-course');
+    const handleManageCourse = (courseId) => {
+        navigate(`/manage-course/${courseId}`);
     }
-
     useEffect(() => {
         // Function to fetch user ID from JWT token
         const token = localStorage.getItem('jw_token');
@@ -65,7 +64,7 @@ const TakenCourses = () => {
                                         <p className="details">
                                             <span className="label">Details:</span> {course.details}
                                         </p>
-                                        <button className="resume-button" onClick={handleManageCourse}>Manage Course</button>
+                                        <button className="resume-button" onClick={() => handleManageCourse(course.courseId)}>Manage Course</button>
                                     </div>
                                 </div>
                             </div>

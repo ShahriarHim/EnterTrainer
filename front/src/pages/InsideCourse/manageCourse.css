@@ -1,9 +1,51 @@
 /* manageCourse.css */
 
+
 .manage-course-container {
-  width: 90%; /* Set the width as needed */
-  margin: 0 auto;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
+
+.sidebar {
+  width: 20%;
+  padding: 10px;
+  background-color: #b5b5b5;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar a {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+}
+.info-card {
+  background-color: #06BBCC;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8%;
+  margin-top: 50px;
+}
+
+.info-card h3 {
+  margin-bottom: 10px;
+}
+
+.main-content {
+  width: 80%;
+  padding: 20px;
+}
+
+/* ... other styles remain the same ... */
+
 
 .nav-links {
   display: flex;

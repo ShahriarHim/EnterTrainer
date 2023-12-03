@@ -98,6 +98,25 @@ router.post('/upload-video', (req, res) => {
     res.json({ message: 'Video uploaded successfully', videoTitle, videoPath });
   });
 });
+router.get('/:courseId', async (req, res) => {
+  const { courseId } = req.params;
+
+  try {
+    const course = await Courses.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching course details', details: error.message });
+  }
+});
+
+
+
+
 
 router.post('/subscribe', async (req, res) => {
   const { user_Id , course_Id} = req.body;

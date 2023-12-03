@@ -37,9 +37,10 @@ const CourseCategories = () => {
                     <h5 className="m-0">Singing</h5>
                     <small className="text-primary">1 Courses</small>
                   </div>
-                  
+
                 </a>
-                <p style={{color: 'orange', textAlign: 'center', fontSize: '70px'}}>And many more...</p>
+                <p style={{ color: 'orange', textAlign: 'center', fontSize: '65px', fontFamily: 'cursive' }}>And many more...</p>
+
               </div>
             </div>
           </div>
