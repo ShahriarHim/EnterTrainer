@@ -28,6 +28,10 @@ const courseRoutes = require("./router/courseRoutes");
 app.use("/course", courseRoutes);
 app.use("/public/uploads", express.static("public/uploads"));
 
+// Course Resource Route
+const resourceRoutes = require('./router/courseresourceRoute');
+app.use('/resources', resourceRoutes);
+
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
