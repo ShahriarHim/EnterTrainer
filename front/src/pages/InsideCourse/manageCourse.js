@@ -16,6 +16,10 @@ const ManageCourse = () => {
   const [courseName, setCourseName] = useState('');
   const { courseId } = useParams();
   const [userType, setUserType] = useState('');
+
+
+
+
   const handleNavigate = (route) => {
     navigate(route);
   };
@@ -182,6 +186,35 @@ const ManageCourse = () => {
 
   const isExistingWeek = activeWeek !== null && weeks[activeWeek] && weeks[activeWeek].lessons.length > 0;
 
+  const getYouTubeVideoId = (url) => {
+    const match = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return match && match[1];
+  };
+
+  // JSX to display the YouTube video
+  const renderYouTubeVideo = (lessonLink) => {
+    const videoId = getYouTubeVideoId(lessonLink);
+    if (videoId) {
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      return (
+        <div style={{  display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'}}>
+        <iframe
+          width="600"
+          height="400"
+          src={embedUrl}
+          title="YouTube Video"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
+        </div>
+      );
+    } else {
+      return <p>Invalid YouTube video link</p>;
+    }
+  };
 
 
 
@@ -210,9 +243,13 @@ const ManageCourse = () => {
           <p> [Handout Link]</p>
           <br></br>
           <h6>Course Resources:</h6>
-          <p><Link to="/resource" >
-            Check Resources
-          </Link></p>
+          <button onClick={() => handleNavigate(`/resource/${courseId}`)}>
+            Resources
+          </button>
+          <button onClick={() => handleNavigate(`/project/${courseId}`)}>
+            Project
+          </button>
+
         </div>
 
 
@@ -231,9 +268,9 @@ const ManageCourse = () => {
         <div className="manage-add-week">
           <div className="manage-course">Manage Course</div>
           {userType === 'INS' && (
-          <button className="add-week-button" onClick={handleAddWeek}>
-            Add Week
-          </button>
+            <button className="add-week-button" onClick={handleAddWeek}>
+              Add Week
+            </button>
           )}
         </div>
 
@@ -259,7 +296,8 @@ const ManageCourse = () => {
                           {week.lessons.map((lesson, lessonIndex) => (
                             <div key={lessonIndex}>
                               <p>Lesson Title: {lesson.title}</p>
-                              <p>Lesson Link: {lesson.link}</p>
+                              {/* <p>Lesson Link: {lesson.link}</p> */}
+                              {renderYouTubeVideo(lesson.link)}
                             </div>
                           ))}
                         </div>
@@ -276,9 +314,9 @@ const ManageCourse = () => {
                         </div>
                       )}
                       {userType === 'INS' && (
-                      <button type="button" onClick={handleUpdateWeekData}>
-                        Update Data
-                      </button>
+                        <button type="button" onClick={handleUpdateWeekData}>
+                          Update Data
+                        </button>
                       )}
                     </>
                   ) : (
@@ -311,7 +349,7 @@ const ManageCourse = () => {
                           Add Lesson
                         </button>
                       </div>
-
+                          
                       <div className="assignment-input">
                         <label>Assignments:</label>
                         {assignmentLinks.map((assignmentLink, index) => (

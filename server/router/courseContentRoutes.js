@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const CourseContent = require("../model/courseContentSchema");
-const InstructorCourse = require("../model/instructorCourseSchema");
+const CourseContent = require("../model/Course/courseContentSchema");
+const InstructorCourse = require("../model/Instructor/instructorCourseSchema");
 const Message = require("../model/messageSchema");
-const Courses = require("../model/coursesSchema");
+const Courses = require("../model/Course/coursesSchema");
 
 
 // Middleware to check if the instructor is associated with the course

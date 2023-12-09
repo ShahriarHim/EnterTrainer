@@ -17,7 +17,8 @@ import About from "../pages/HomePage/about";
 import CourseCategories from "../pages/HomePage/categories";
 import CourseBar from "../pages/User/courseBar";
 import Resource from "../pages/Comp/resource";
-
+import ProjectManagement from "../pages/InsideCourse/project";
+import Event from "../pages/Comp/event";
 const Index = () => {
   return (
     <div>
@@ -39,8 +40,10 @@ const Index = () => {
         <Route path="/manage-course/:courseId" element={<ManageCourse/>}></Route>
         <Route path="/ins-courses" element={<InsCourses/>}></Route>
         {/* <Route path='/courses' element={<Courses />}></Route> */}
-        <Route path="/resource" element={<Resource/>}></Route>
+        <Route path="/resource/:courseId" element={<Resource />}></Route>
         <Route path="/checkout/:courseId" element={<Payment />}></Route>
+        <Route path="/project/:courseId" element={<ProjectManagement />}></Route>
+        <Route path="/events" element={<Event />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

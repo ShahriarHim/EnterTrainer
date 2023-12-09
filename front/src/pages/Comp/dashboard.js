@@ -72,6 +72,9 @@ const Dashboard = () => {
               Community
             </a>
           )}
+          <a to="" className="nav-item nav-link" onClick={() => handleNavigation('/events')}>
+            Event
+          </a>
           <a to="" className="nav-item nav-link" onClick={() => handleNavigation('/profile')}>
             Profile
           </a>

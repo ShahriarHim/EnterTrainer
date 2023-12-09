@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Resource = require('../model/courseresource');
+const Resource = require('../model/Course/courseResource');
 
 // Route for adding or updating resources
 router.post('/addOrUpdateResource', async (req, res) => {

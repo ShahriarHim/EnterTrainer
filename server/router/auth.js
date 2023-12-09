@@ -12,7 +12,7 @@ require("dotenv").config();
 require("../db/conn");
 const User = require("../model/userSchema");
 const Token = require("../model/tokenSchema");
-const Instructor = require("../model/insSchema");
+const Instructor = require("../model/Instructor/insSchema");
 
 // user part////////////////////////////////////////////
 
@@ -202,7 +202,7 @@ router.post("/signin", async (req, res) => {
 
     const payload = {
       id: user._id,
-      username: user.name,
+      userName: user.name,
       userType: user.userType
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "2d" });
@@ -344,7 +344,7 @@ router.post("/ins-signin", async (req, res) => {
 
   const payload = {
     id: user._id,
-    username: user.name,
+    userName: user.name,
     userType: user.userType
   };
   const token = jwt.sign(payload, process.env.SECRET_KEY, {

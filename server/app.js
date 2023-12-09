@@ -26,11 +26,14 @@ app.use("/course-content", courseContentRoutes);
 // Your existing route for courses
 const courseRoutes = require("./router/courseRoutes");
 app.use("/course", courseRoutes);
-app.use("/public/uploads", express.static("public/uploads"));
+// app.use("/public/uploads", express.static("public/uploads"));
 
 // Course Resource Route
-const resourceRoutes = require('./router/courseresourceRoute');
+const resourceRoutes = require("./router/courseResourceRoute");
 app.use('/resources', resourceRoutes);
+
+const extrasRoutes = require("./router/courseExtrasRoutes");
+app.use('/extras', extrasRoutes);
 
 const PORT = process.env.PORT;
 

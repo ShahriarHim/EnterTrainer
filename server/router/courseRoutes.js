@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Courses = require("../model/coursesSchema");
-const multer = require('multer');
-const Subscription = require('../model/subscription')
-const InstructorCourse = require('../model/instructorCourseSchema');
+const Courses = require("../model/Course/coursesSchema");
+// const multer = require('multer');
+const Subscription = require('../model/Course/subscription')
+const InstructorCourse = require('../model/Instructor/instructorCourseSchema');
+const User = require('../model/userSchema');
 // const upload = require("../multerConfig");
 
 router.post("/create-course",  async (req, res) => {
@@ -67,37 +68,39 @@ router.get("/all-courses", async (req, res) => {
   }
 });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Set the destination folder for storing uploaded files
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
-  },
-});
+// const storage = multer.diskStorage({
 
-// Initialize upload
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 100000000 }, // Set the file size limit in bytes (e.g., 100MB)
-}).single('videoFile'); // 'videoFile' should match the name attribute in your form
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads/'); // Set the destination folder for storing uploaded files
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
+//   },
+// });
 
-// Example route for uploading videos
-router.post('/upload-video', (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      return res.status(500).json({ message: err.message });
-    }
+// // Initialize upload
+// const upload = multer({
+//   storage: storage,
+//   limits: { fileSize: 100000000 }, // Set the file size limit in bytes (e.g., 100MB)
+// }).single('videoFile'); // 'videoFile' should match the name attribute in your form
+
+// // Example route for uploading videos
+// router.post('/upload-video', (req, res) => {
+//   upload(req, res, (err) => {
+//     if (err) {
+//       return res.status(500).json({ message: err.message });
+//     }
     
-    // If the upload is successful, you can access the uploaded file details in req.file
-    const { videoTitle } = req.body;
-    const videoPath = req.file.path;
+//     // If the upload is successful, you can access the uploaded file details in req.file
+//     const { videoTitle } = req.body;
+//     const videoPath = req.file.path;
 
-    // Now you can save the video title and file path to your database or perform other actions
-    // For demonstration purposes, let's just send a success response
-    res.json({ message: 'Video uploaded successfully', videoTitle, videoPath });
-  });
-});
+//     // Now you can save the video title and file path to your database or perform other actions
+//     // For demonstration purposes, let's just send a success response
+//     res.json({ message: 'Video uploaded successfully', videoTitle, videoPath });
+//   });
+// });
+
 router.get('/:courseId', async (req, res) => {
   const { courseId } = req.params;
 
@@ -217,6 +220,42 @@ router.get('/Instructor/:instructorId', async (req, res) => {
     res.status(500).json({ error: 'Server Error' });
   }
 });
+
+
+router.get('/enrolled-users/:courseId', async (req, res) => {
+  try {
+    const courseId = req.params.courseId; // Extracting course ID from the request parameter
+
+    // Find subscriptions for the given course ID and populate user details
+    const userSubscriptions = await Subscription.find({ course_Id: courseId })
+      .populate({
+        path: 'user_Id',
+        select: 'name' // Selecting 'userId' and 'name' fields from the Users model
+      })
+      .exec();
+
+    // Check if courseSubscriptions array is empty
+    if (userSubscriptions.length === 0) {
+      return res.json({ message: 'No subscriptions yet for this course.' });
+    }
+
+    // Extract user details from subscriptions and send as a response
+    const userSubscribed = userSubscriptions.map(subscription => {
+      return {
+        userId: subscription.user_Id._id,
+        userName: subscription.user_Id.name, // Accessing the 'name' field here
+        subscriptionDate: subscription.subscriptionDate
+      };
+    });
+
+    res.json({ userSubscribed });
+  
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+});
+
 
 
 
