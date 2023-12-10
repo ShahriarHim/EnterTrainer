@@ -185,7 +185,7 @@ router.get("/show-events", async (req, res) => {
 
 router.post('/submit-assignment', async (req, res) => {
   try {
-    const { userId, courseId, weekNumber, submissionLink, submissionDate, courseContentId } = req.body;
+    const { userId, courseId, weekNumber, submissionLink, submissionDate } = req.body;
 
     // Check if there is an existing submission for the same week
     const existingSubmission = await AssignmentSubmission.findOne({
@@ -205,7 +205,7 @@ router.post('/submit-assignment', async (req, res) => {
       weekNumber,
       submissionLink,
       submissionDate,
-      courseContentId,
+
     });
 
     // Save the assignment submission

@@ -24,11 +24,7 @@ const assignmentSubmissionSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    courseContentId: {
-        type: Schema.Types.ObjectId,
-        ref: 'CourseContent',
-        required: true
-    },
+
 });
 
 const AssignmentSubmission = mongoose.model('AssignmentSubmission', assignmentSubmissionSchema);

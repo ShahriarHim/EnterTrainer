@@ -16,6 +16,7 @@ const ManageCourse = () => {
   const { courseId } = useParams();
   const [userType, setUserType] = useState('');
   const [userId, setUserId] = useState('');
+  const [submissionLink, setSubmissionLink] = useState('');
 
 
 
@@ -219,24 +220,36 @@ const ManageCourse = () => {
       return <p>Invalid YouTube video link</p>;
     }
   };
-  const handleSubmissionLinkChange = (weekIndex, assignmentIndex, value) => {
-    const updatedWeeks = [...weeks];
-    updatedWeeks[weekIndex].assignments[assignmentIndex].submissionLink = value;
-    setWeeks(updatedWeeks);
+  const handleSubmissionLinkChange = (value) => {
+    setSubmissionLink(value);
   };
+
 
   const handleSubmitAssignment = async (weekIndex, assignmentIndex) => {
     try {
-      const submissionLink = weeks[weekIndex].assignments[assignmentIndex].submissionLink;
+      const existingSubmission = weeks[weekIndex].weekNumber;
 
+      if (existingSubmission) {
+        // If there's already a submission, show an alert and return
+        alert('Assignment already submitted for this week');
+        return;
+      }
+      const submissionDate = new Date().toISOString();
+      console.log('id',userId);
+      console.log('courseId',courseId);
+      console.log('week number',weeks[weekIndex].weekNumber);
+      console.log('submissionLink',submissionLink);
+      console.log('submissionDate',submissionDate);
+      console.log('courseContentId',weeks[weekIndex].id);
       // Make a POST request to submit the assignment
-      const response = await axios.post(`http://localhost:5000/submissions`, {
+      const response = await axios.post(`http://localhost:5000/extras/submit-assignment`, {
         userId,
         courseId,
-        submissionLink,
-        submissionDate: new Date(), // You may need to format the date as needed
-        courseContentRef: weeks[weekIndex]._id // Replace this with the appropriate reference
+        weekNumber: weeks[weekIndex].weekNumber,
+        submissionLink: submissionLink,
+        submissionDate: submissionDate, // You may need to format the date as needed
       });
+
       // Handle success - you can update state or perform other actions
       console.log('Assignment submitted successfully:', response.data);
 
@@ -347,12 +360,17 @@ const ManageCourse = () => {
                               <input
                                 type="text"
                                 placeholder="Submission Link"
-                                value={assignment.submissionLink || ''}
-                                onChange={(e) => handleSubmissionLinkChange(weekIndex, assignmentIndex, e.target.value)}
+                                value={submissionLink}
+                                onChange={(e) => handleSubmissionLinkChange(e.target.value)}
                               />
-                              <button type="button" onClick={() => handleSubmitAssignment(weekIndex, assignmentIndex)}>
+
+                              <button
+                                type="button"
+                                onClick={() => handleSubmitAssignment(weekIndex, assignmentIndex)}
+                              >
                                 Submit Assignment
                               </button>
+
                             </div>
                           ))}
                         </div>
