@@ -12,11 +12,12 @@ const ManageCourse = () => {
   const [assignmentLinks, setAssignmentLinks] = useState(['']);
   const [lessonTitles, setLessonTitles] = useState(['']);
   const [activeWeek, setActiveWeek] = useState(null);
-  const [progress, setProgress] = useState(0);
   const [courseName, setCourseName] = useState('');
   const { courseId } = useParams();
   const [userType, setUserType] = useState('');
-
+  const [userId, setUserId] = useState('');
+  const [submissionLink, setSubmissionLink] = useState('');
+  // const [weekNumber, setWeekNumber] = useState(['']);
 
 
 
@@ -47,13 +48,16 @@ const ManageCourse = () => {
     };
 
     fetchCourseDetails();
+
     const token = localStorage.getItem('jw_token');
     if (token) {
       const decodedToken = jwtDecode(token);
       setUserType(decodedToken.userType);
+      setUserId(decodedToken.id);
     }
 
   }, [courseId]);
+
 
 
   const handleAddWeekData = async () => {
@@ -197,66 +201,131 @@ const ManageCourse = () => {
     if (videoId) {
       const embedUrl = `https://www.youtube.com/embed/${videoId}`;
       return (
-        <div style={{  display: 'flex',
+        <div style={{
+          display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'}}>
-        <iframe
-          width="600"
-          height="400"
-          src={embedUrl}
-          title="YouTube Video"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+          alignItems: 'center'
+        }}>
+          <iframe
+            width="600"
+            height="400"
+            src={embedUrl}
+            title="YouTube Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
         </div>
       );
     } else {
       return <p>Invalid YouTube video link</p>;
     }
   };
+  const handleSubmissionLinkChange = (value) => {
+    setSubmissionLink(value);
+  };
+
+
+  const handleSubmitAssignment = async (weekIndex, assignmentIndex) => {
+    try {
+      // setWeekNumber(['']);
+      // const setWeekNumber = weeks[weekIndex].weekNumber;
+      // const existingSubmission = weekNumber;
+      const submissionDate = new Date().toISOString();
+      console.log('id', userId);
+      console.log('courseId', courseId);
+      console.log('week number', weeks[weekIndex].weekNumber);
+      console.log('submissionLink', submissionLink);
+      console.log('submissionDate', submissionDate);
+      console.log('courseContentId', weeks[weekIndex]._id);
+
+      // if (existingSubmission) {
+      //   // If there's already a submission, show an alert and return
+      //   alert('Assignment already submitted for this week');
+      //   return;
+      // }
+
+
+      // Make a POST request to submit the assignment
+      const response = await axios.post(`http://localhost:5000/extras/submit-assignment`, {
+        userId,
+        courseId,
+        weekNumber: weeks[weekIndex].weekNumber,
+        submissionLink: submissionLink,
+        submissionDate: submissionDate, // You may need to format the date as needed
+      });
+
+
+      // Handle success - you can update state or perform other actions
+      console.log('Assignment submitted successfully:', response.data);
+
+      // Show success alert
+      alert('Assignment submitted successfully!');
+    } catch (error) {
+      // Handle error
+      console.error('Error submitting assignment:', error);
+
+      // Show error alert
+      alert('Assignment is already submitted!');
+    }
+  };
+
 
 
 
   return (
     <div className="manage-course-container">
       {/* Sidebar */}
-      <div className="sidebar">
+      <div style={{
+        backgroundColor: "#333",
+        color: "#fff",
+        padding: "20px",
+        width: "300px",
+        height: "200%",
+        position: "flex",
+        left: 0,
+        top: 0,
+      }}>
         <a href="#" onClick={() => handleNavigate('/home')}>
           Home
         </a>
+        <p></p>
+        {userType === 'INS' && (
         <a href="#" onClick={() => handleNavigate('/taken-courses')}>
           Courses
         </a>
-
+        )}
+        {userType === 'Student' && (
+        <a href="#" onClick={() => handleNavigate('/enrolled-courses')}>
+          Courses
+        </a>
+        )}
         {/* Rectangular Card */}
         <div className="info-card">
           <h3>Course Info</h3>
-          <div className="progress-bar">
-            <p>Progress: {progress.toFixed(2)}%</p>
-            <br></br>
-          </div>
+          {userType === 'Student' && (
+          <button onClick={() => handleNavigate(`/progress/${courseId}`)}>
+            Progress
+          </button>
+          )}
           <h6>Course Expiry Date:</h6>
           <p> [Your Date]</p>
-          <br></br>
-          <h6>Course Handouts:</h6>
-          <p> [Handout Link]</p>
-          <br></br>
-          <h6>Course Resources:</h6>
           <button onClick={() => handleNavigate(`/resource/${courseId}`)}>
             Resources
           </button>
           <button onClick={() => handleNavigate(`/project/${courseId}`)}>
             Project
           </button>
-
+          <button onClick={() => handleNavigate(`/live-Session/${courseId}`)}>
+            Live Session
+          </button>
         </div>
 
 
 
       </div>
       {/* Main Content */}
-      <div className="main-content">
+      <div style={{ flex: 1, marginLeft: '100px',marginRight:'100px', padding: '20px' }}>
         {/* Course Name */}
         <div className="course-name">{courseName}</div>
 
@@ -284,8 +353,8 @@ const ManageCourse = () => {
             {activeWeek === weekIndex && (
               <div className="dropdown-content">
                 <div className="week-form">
-                  <label>Week No:</label>
-                  <span>{week.weekNumber}</span>
+                  <label>Week No: {week.weekNumber}</label>
+
 
                   {isExistingWeek ? (
                     // Display existing data
@@ -295,7 +364,7 @@ const ManageCourse = () => {
                           <label>Lessons:</label>
                           {week.lessons.map((lesson, lessonIndex) => (
                             <div key={lessonIndex}>
-                              <p>Lesson Title: {lesson.title}</p>
+                              <h5>Lesson Title: {lesson.title}</h5>
                               {/* <p>Lesson Link: {lesson.link}</p> */}
                               {renderYouTubeVideo(lesson.link)}
                             </div>
@@ -309,6 +378,20 @@ const ManageCourse = () => {
                           {week.assignments.map((assignment, assignmentIndex) => (
                             <div key={assignmentIndex}>
                               <p>Assignment Link: {assignment.link}</p>
+                              <input
+                                type="text"
+                                placeholder="Submission Link"
+                                value={submissionLink}
+                                onChange={(e) => handleSubmissionLinkChange(e.target.value)}
+                              />
+
+                              <button
+                                type="button"
+                                onClick={() => handleSubmitAssignment(weekIndex, assignmentIndex)}
+                              >
+                                Submit Assignment
+                              </button>
+
                             </div>
                           ))}
                         </div>
@@ -320,7 +403,7 @@ const ManageCourse = () => {
                       )}
                     </>
                   ) : (
-                    // Display input fields for new data
+
                     <>
                       <div className="lesson-input">
                         <label>Lessons:</label>
@@ -349,7 +432,7 @@ const ManageCourse = () => {
                           Add Lesson
                         </button>
                       </div>
-                          
+
                       <div className="assignment-input">
                         <label>Assignments:</label>
                         {assignmentLinks.map((assignmentLink, index) => (
@@ -383,8 +466,7 @@ const ManageCourse = () => {
           </div>
         ))}
 
-        {/* Rest of the Content */}
-        {/* ... */}
+
       </div>
     </div>
   );

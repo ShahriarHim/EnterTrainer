@@ -148,9 +148,11 @@ const Resource = () => {
       </div>
 
       {/* Main Content */}
-      <div style={{ flex: 1, marginLeft: "200px", padding: "20px" }}>
-        <h3 style={{ textAlign: "center", color: "red" }}>Resources</h3>
-        {userType === "INS" && showAddResource && (
+      <div style={{ flex: 1, marginLeft: '200px', padding: '20px' }}>
+        <h3 style={{ textAlign: 'center', color: 'red' }}>
+          Resources
+        </h3>
+        {userType === 'INS' && showAddResource && (
           <div>
             <div>
               <label>Add Resource - Week:</label>
@@ -170,9 +172,7 @@ const Resource = () => {
                 onChange={(e) => setNewResourceLink(e.target.value)}
               />
             </div>
-            <button onClick={handleAddOrUpdateResource}>
-              Add/Update Resource
-            </button>
+            <button onClick={handleAddOrUpdateResource}>Add/Update Resource</button>
             {alertMessage && <p>{alertMessage}</p>}
           </div>
         )}
@@ -184,19 +184,23 @@ const Resource = () => {
               {Array.isArray(weekResources[weekNumber]) ? (
                 weekResources[weekNumber].map((resource, index) => (
                   <div key={index}>
+                    <h6>
+                      Resource Here:
+                    </h6>
                     <p>
-                      Resource Here:{' '}
-                      <button
-                        style={{
-                          backgroundColor: '#06BBCC',
-                          color: '#fff',
-                          padding: '5px 10px',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => handleDownload(resource.link)}
-                      >
-                        Download Now
-                      </button>
+                    <button
+
+                      style={{
+                        width: '100px',
+                        backgroundColor: '#06BBCC',
+                        color: '#fff',
+                        padding: '5px 10px',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => handleDownload(resource.link)}
+                    >
+                      Download Now
+                    </button>
                     </p>
                   </div>
                 ))

@@ -3,6 +3,8 @@ const router = express.Router()
 const Project = require("../model/projectSchema");
 const ProjectSubmission = require("../model/projectSubmission");
 const Event = require("../model/eventSchema");
+const AssignmentSubmission = require("../model/Course/assignmentSubmissionSchema");
+const LiveSession = require("../model/liveSessionSchema");
 
 
 router.post('/create-project/:courseId', async (req, res) => {
@@ -168,6 +170,111 @@ router.post("/create-event", async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+// GET route to fetch all event details
+router.get("/show-events", async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.status(200).json({ events });
+  } catch (error) {
+    console.error('Error fetching events:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+router.post('/submit-assignment', async (req, res) => {
+  try {
+    const { userId, courseId, weekNumber, submissionLink, submissionDate } = req.body;
+
+    // Check if there is an existing submission for the same week
+    const existingSubmission = await AssignmentSubmission.findOne({
+      userId,
+      courseId,
+      weekNumber,
+    });
+
+    if (existingSubmission) {
+      return res.status(400).json({ error: 'Assignment already submitted for this week' });
+    }
+
+    // Create a new assignment submission
+    const assignmentSubmission = new AssignmentSubmission({
+      userId,
+      courseId,
+      weekNumber,
+      submissionLink,
+      submissionDate,
+
+    });
+
+    // Save the assignment submission
+    await assignmentSubmission.save();
+
+    res.status(201).json({ message: 'Assignment submitted successfully!' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to submit assignment' });
+  }
+});
+
+// Add this route to your backend Express app
+router.get('/submissions/:userId/:courseId', async (req, res) => {
+  try {
+    const { userId, courseId } = req.params;
+
+    // Fetch submissions for the specified user and course
+    const submissions = await AssignmentSubmission.find({ userId, courseId });
+
+    res.json({ submissions });
+  } catch (error) {
+    console.error('Error fetching submissions:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.post('/create-session/:courseId', async (req, res) => {
+  try {
+    const { topic, link, date, time } = req.body;
+    const { courseId } = req.params; // Extract courseId from URL params
+    const newSession = new LiveSession({ topic, link, date, time, courseId });
+    const savedSession = await newSession.save();
+    res.json(savedSession);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+// Route to get all meetings
+router.get('/sessions/:courseId', async (req, res) => {
+  try {
+    const { courseId } = req.params; // Extract courseId from URL params
+    const meetings = await LiveSession.find({ courseId }); // Fetch meetings by courseId
+    res.json(meetings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete('/sessions/:courseId/:meetingId', async (req, res) => {
+  try {
+    const { courseId, meetingId } = req.params;
+
+    // Check if the meeting exists for the given courseId and meetingId
+    const meeting = await LiveSession.findOne({ _id: meetingId, courseId });
+
+    if (!meeting) {
+      return res.status(404).json({ message: 'Meeting not found' });
+    }
+
+    // If the meeting exists, remove it
+    await LiveSession.findByIdAndDelete(meetingId);
+    res.json({ message: 'Meeting deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 
 

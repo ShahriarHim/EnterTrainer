@@ -29,17 +29,25 @@ const ProjectManagement = () => {
       setUserId(decodedToken.id);
     }
 
-    axios.get(`http://localhost:5000/projects/showProjects/${userId}`)
+    axios.get(`http://localhost:5000/extras/showProjects/${userId}`)
       .then((response) => {
-        const updatedProjects = response.data.projects.map((project) => ({
-          ...project,
-          allowSubmission: !project.submission,
-        }));
-        setProjects(updatedProjects);
+        console.log('Response:', response.data); // Log the entire response object
+
+        if (response.data && response.data.projects) {
+          const updatedProjects = response.data.projects.map((project) => ({
+            ...project,
+            allowSubmission: !project.submission,
+          }));
+          setProjects(updatedProjects);
+        } else {
+          console.error('Unexpected response format:', response.data);
+        }
       })
       .catch((error) => {
         console.error('Error fetching user projects:', error.response ? error.response.data.error : error.message);
       });
+
+
 
     axios.get(`http://localhost:5000/course/enrolled-users/${courseId}`)
       .then((response) => {
@@ -67,7 +75,7 @@ const ProjectManagement = () => {
         setProjects(updatedProjects);
         alert('Project Created');
         setNewProject({
-          insName: '',
+          insName: '', // Corrected property name here
           name: '',
           details: '',
           participants: [],
@@ -80,6 +88,7 @@ const ProjectManagement = () => {
       });
   };
 
+
   const handleSubmissionChange = (e, projectId) => {
     const updatedProjects = projects.map((proj) => {
       if (proj._id === projectId) {
@@ -91,14 +100,17 @@ const ProjectManagement = () => {
   };
 
   const handleSubmit = (project) => {
+    // Log the project ID to check if it's being passed correctly
+    console.log('Project ID:', project._id);
+
     // Check if submission exists for the project
-    axios.get(`http://localhost:5000/projects/check-submission/${project._id}`)
+    axios.get(`http://localhost:5000/extras/check-submission/${project._id}`)
       .then((response) => {
         if (response.data.submitted) {
           alert('Project already submitted');
         } else {
           // If submission doesn't exist, submit the work
-          axios.post(`http://localhost:5000/projects/submit-work/${project._id}/${userId}`, {
+          axios.post(`http://localhost:5000/extras/submit-work/${project._id}/${userId}`, {
             submission: project.submission,
           })
             .then((submitResponse) => {
@@ -125,6 +137,7 @@ const ProjectManagement = () => {
       });
   };
 
+
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       {/* Sidebar */}
@@ -150,7 +163,7 @@ const ProjectManagement = () => {
             <input
               type="text"
               value={newProject.insName}
-              onChange={(e) => setNewProject({ ...newProject, InsName: e.target.value })}
+              onChange={(e) => setNewProject({ ...newProject, insName: e.target.value })}
             />
             <label>Project Name:</label>
             <input
