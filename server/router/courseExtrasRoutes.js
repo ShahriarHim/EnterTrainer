@@ -3,7 +3,7 @@ const router = express.Router()
 const Project = require("../model/projectSchema");
 const ProjectSubmission = require("../model/projectSubmission");
 const Event = require("../model/eventSchema");
-
+const AssignmentSubmission = require("../model/Course/assignmentSubmissionSchema");
 
 router.post('/create-project/:courseId', async (req, res) => {
   try {
@@ -182,6 +182,40 @@ router.get("/show-events", async (req, res) => {
 });
 
 
+
+router.post('/submit-assignment', async (req, res) => {
+  try {
+    const { userId, courseId, weekNumber, submissionLink, submissionDate, courseContentId } = req.body;
+
+    // Check if there is an existing submission for the same week
+    const existingSubmission = await AssignmentSubmission.findOne({
+      userId,
+      courseId,
+      weekNumber,
+    });
+
+    if (existingSubmission) {
+      return res.status(400).json({ error: 'Assignment already submitted for this week' });
+    }
+
+    // Create a new assignment submission
+    const assignmentSubmission = new AssignmentSubmission({
+      userId,
+      courseId,
+      weekNumber,
+      submissionLink,
+      submissionDate,
+      courseContentId,
+    });
+
+    // Save the assignment submission
+    await assignmentSubmission.save();
+
+    res.status(201).json({ message: 'Assignment submitted successfully!' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to submit assignment' });
+  }
+});
 
 
 module.exports = router;
