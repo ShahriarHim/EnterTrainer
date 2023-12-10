@@ -20,7 +20,7 @@ import Resource from "../pages/Comp/resource";
 import ProjectManagement from "../pages/InsideCourse/project";
 import Event from "../pages/Comp/event";
 import ProgressBar from "../pages/InsideCourse/progressBar";
-
+import LiveSession from "../pages/InsideCourse/liveSession";
 const Index = () => {
   return (
     <div>
@@ -47,7 +47,7 @@ const Index = () => {
         <Route path="/project/:courseId" element={<ProjectManagement />}></Route>
         <Route path="/progress/:courseId" element={<ProgressBar />}></Route>
         <Route path="/events" element={<Event />}></Route>
-       
+        <Route path="/live-Session/:courseId" element={<LiveSession />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

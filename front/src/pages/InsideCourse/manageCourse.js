@@ -17,6 +17,7 @@ const ManageCourse = () => {
   const [userType, setUserType] = useState('');
   const [userId, setUserId] = useState('');
   const [submissionLink, setSubmissionLink] = useState('');
+  // const [weekNumber, setWeekNumber] = useState(['']);
 
 
 
@@ -227,20 +228,24 @@ const ManageCourse = () => {
 
   const handleSubmitAssignment = async (weekIndex, assignmentIndex) => {
     try {
-      const existingSubmission = weeks[weekIndex].weekNumber;
-
-      if (existingSubmission) {
-        // If there's already a submission, show an alert and return
-        alert('Assignment already submitted for this week');
-        return;
-      }
+      // setWeekNumber(['']);
+      // const setWeekNumber = weeks[weekIndex].weekNumber;
+      // const existingSubmission = weekNumber;
       const submissionDate = new Date().toISOString();
-      console.log('id',userId);
-      console.log('courseId',courseId);
-      console.log('week number',weeks[weekIndex].weekNumber);
-      console.log('submissionLink',submissionLink);
-      console.log('submissionDate',submissionDate);
-      console.log('courseContentId',weeks[weekIndex].id);
+      console.log('id', userId);
+      console.log('courseId', courseId);
+      console.log('week number', weeks[weekIndex].weekNumber);
+      console.log('submissionLink', submissionLink);
+      console.log('submissionDate', submissionDate);
+      console.log('courseContentId', weeks[weekIndex]._id);
+
+      // if (existingSubmission) {
+      //   // If there's already a submission, show an alert and return
+      //   alert('Assignment already submitted for this week');
+      //   return;
+      // }
+
+
       // Make a POST request to submit the assignment
       const response = await axios.post(`http://localhost:5000/extras/submit-assignment`, {
         userId,
@@ -250,6 +255,7 @@ const ManageCourse = () => {
         submissionDate: submissionDate, // You may need to format the date as needed
       });
 
+
       // Handle success - you can update state or perform other actions
       console.log('Assignment submitted successfully:', response.data);
 
@@ -257,46 +263,61 @@ const ManageCourse = () => {
       alert('Assignment submitted successfully!');
     } catch (error) {
       // Handle error
-      console.error('Error submitting assignment:', error.response.data.error);
+      console.error('Error submitting assignment:', error);
 
       // Show error alert
-      alert('Error submitting assignment. Please try again.');
+      alert('Assignment is already submitted!');
     }
   };
+
+
 
 
   return (
     <div className="manage-course-container">
       {/* Sidebar */}
-      <div className="sidebar">
+      <div style={{
+        backgroundColor: "#333",
+        color: "#fff",
+        padding: "20px",
+        width: "300px",
+        height: "200%",
+        position: "flex",
+        left: 0,
+        top: 0,
+      }}>
         <a href="#" onClick={() => handleNavigate('/home')}>
           Home
         </a>
+        <p></p>
+        {userType === 'INS' && (
         <a href="#" onClick={() => handleNavigate('/taken-courses')}>
           Courses
         </a>
-
+        )}
+        {userType === 'Student' && (
+        <a href="#" onClick={() => handleNavigate('/enrolled-courses')}>
+          Courses
+        </a>
+        )}
         {/* Rectangular Card */}
         <div className="info-card">
           <h3>Course Info</h3>
+          {userType === 'Student' && (
           <button onClick={() => handleNavigate(`/progress/${courseId}`)}>
             Progress
           </button>
+          )}
           <h6>Course Expiry Date:</h6>
           <p> [Your Date]</p>
-          <br></br>
-          <h6>Course Handouts:</h6>
-          <p> [Handout Link]</p>
-          <br></br>
-          <h6>Course Resources:</h6>
           <button onClick={() => handleNavigate(`/resource/${courseId}`)}>
             Resources
           </button>
           <button onClick={() => handleNavigate(`/project/${courseId}`)}>
             Project
           </button>
-          <button onClick={() => handleNavigate(`/meeting/${courseId}`)}>
-            Meeting
+          <button onClick={() => handleNavigate(`/live-Session/${courseId}`)}>
+            Live Session
           </button>
         </div>
 
@@ -304,7 +325,7 @@ const ManageCourse = () => {
 
       </div>
       {/* Main Content */}
-      <div className="main-content">
+      <div style={{ flex: 1, marginLeft: '100px',marginRight:'100px', padding: '20px' }}>
         {/* Course Name */}
         <div className="course-name">{courseName}</div>
 

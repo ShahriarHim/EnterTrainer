@@ -1,0 +1,24 @@
+.progress-bar-container {
+    margin: 50px;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .progress-bar {
+    background-color: rgb(255, 255, 255);
+  }
+  .progress-bar h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+
+  .progress-bar progress {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+
+  }
+  
