@@ -78,7 +78,7 @@ const Resource = () => {
             </div>
 
             {/* Main Content */}
-            <div style={{ flex: 1, marginLeft: '200px', padding: '20px' }}>
+            <div style={{ flex: 1, marginLeft: '200px', marginRight: '500px', padding: '20px' }}>
                 <h3 style={{ textAlign: 'center', color: 'red' }}>
                     Resources
                 </h3>

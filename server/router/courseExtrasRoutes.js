@@ -170,6 +170,17 @@ router.post("/create-event", async (req, res) => {
 });
 
 
+// GET route to fetch all event details
+router.get("/show-events", async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.status(200).json({ events });
+  } catch (error) {
+    console.error('Error fetching events:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 

@@ -21,6 +21,7 @@ const TakenCourses = () => {
         console.log('ins id', insId);
 
         // Fetch courses for the user from the backend
+        
         const fetchCourses = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/course/Instructor/${insId}`);
