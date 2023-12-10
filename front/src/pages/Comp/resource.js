@@ -28,10 +28,16 @@ const Resource = () => {
 
   const handleAddOrUpdateResource = async () => {
     try {
+      const tokenStartIndex = newResourceLink.indexOf("/d/") + 3;
+      const tokenEndIndex = newResourceLink.indexOf("/edit");
+      const token = newResourceLink.substring(tokenStartIndex, tokenEndIndex);
+
+      const downloadLink = `https://drive.google.com/uc?export=download&id=${token}`;
+
       const resourceData = {
         courseId,
         weekNumber: newResourceWeek,
-        link: newResourceLink,
+        link: downloadLink,
       };
 
       const response = await axios.post(
@@ -70,11 +76,13 @@ const Resource = () => {
       console.error("Error fetching resources:", error.response.data.error);
     }
   };
+
   // Function to handle resource download
   const handleDownload = (link) => {
     // Simulate download using window.open
     window.open(link, "_blank");
   };
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       {/* Sidebar */}
@@ -149,39 +157,50 @@ const Resource = () => {
           </div>
         )}
 
-<div>
-        {Object.keys(weekResources).map((weekNumber) => (
-          <div key={weekNumber}>
-            <h4>Week {weekNumber}:</h4>
-            {Array.isArray(weekResources[weekNumber]) ? (
-              weekResources[weekNumber].map((resource, index) => (
-                <div key={index}>
+        <div>
+          {Object.keys(weekResources).map((weekNumber) => (
+            <div key={weekNumber}>
+              <h4>Week {weekNumber}:</h4>
+              {Array.isArray(weekResources[weekNumber]) ? (
+                weekResources[weekNumber].map((resource, index) => (
+                  <div key={index}>
+                    <p>
+                      Resource Here:{' '}
+                      <button
+                        style={{
+                          backgroundColor: '#06BBCC',
+                          color: '#fff',
+                          padding: '5px 10px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => handleDownload(resource.link)}
+                      >
+                        Download Now
+                      </button>
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div>
                   <p>
                     Resource Here:{' '}
                     <button
-                      style={{ backgroundColor: '#06BBCC', color: '#fff', padding: '5px 10px', cursor: 'pointer' }}
-                      onClick={() => handleDownload(resource.link)}
+                      style={{
+                        backgroundColor: '#06BBCC',
+                        color: '#fff',
+                        padding: '5px 10px',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => handleDownload(weekResources[weekNumber].link)}
                     >
                       Download Now
                     </button>
                   </p>
                 </div>
-              ))
-            ) : (
-              <div>
-                <p>
-                  Resource Here:{' '}
-                  <button
-                    onClick={() => handleDownload(weekResources[weekNumber].link)}
-                  >
-                    Download Now
-                  </button>
-                </p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
