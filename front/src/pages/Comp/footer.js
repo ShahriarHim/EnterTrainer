@@ -115,7 +115,10 @@ const Footer = () => {
               />
               <button
                 type="button"
-                className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                className="custom-small-button position-absolute"
+                style={{
+                  color: 'balck',         // Replace with your desired text color
+                }}
               >
                 SignUp
               </button>
@@ -129,14 +132,11 @@ const Footer = () => {
             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
               &copy;{" "}
               <a className="border-bottom" href="#">
-                Your Site Name
+                CSE471
               </a>
               , All Right Reserved.
               {/*/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/}
-              Designed By{" "}
-              <a className="border-bottom" href="https://htmlcodex.com">
-                HTML Codex
-              </a>
+              Designed By GROUP 4
             </div>
             <div className="col-md-6 text-center text-md-end">
               <div className="footer-menu">

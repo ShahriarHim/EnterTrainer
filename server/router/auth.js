@@ -241,6 +241,25 @@ router.get("/user/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+// Update user profile
+router.put("/user/:id", async (req, res) => {
+  const userId = req.params.id;
+  const updatedUserInfo = req.body;
+
+  try {
+    const user = await User.findByIdAndUpdate(userId, updatedUserInfo, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 // Fetch all users
 router.get("/userall", async (req, res) => {
