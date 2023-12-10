@@ -26,13 +26,33 @@ const Resource = () => {
     getAllResources(courseId);
   }, [courseId]); // Include courseId in the dependency array
 
+  const extractTokenFromGoogleDriveLink = (link) => {
+    // Extract token from Google Drive link
+    const tokenStartIndex = link.indexOf("/d/") + 3;
+    const tokenEndIndex = link.indexOf("/", tokenStartIndex);
+    
+    if (tokenStartIndex !== -1 && tokenEndIndex !== -1) {
+      const token = link.substring(tokenStartIndex, tokenEndIndex);
+      return token;
+    } else {
+      console.error("Invalid Google Drive link format. Unable to extract token.");
+      return null;
+    }
+  };
+
   const handleAddOrUpdateResource = async () => {
     try {
-      const tokenStartIndex = newResourceLink.indexOf("/d/") + 3;
-      const tokenEndIndex = newResourceLink.indexOf("/edit");
-      const token = newResourceLink.substring(tokenStartIndex, tokenEndIndex);
+      // Extract token from the provided Google Drive link
+      const extractedToken = extractTokenFromGoogleDriveLink(newResourceLink);
 
-      const downloadLink = `https://drive.google.com/uc?export=download&id=${token}`;
+      if (!extractedToken) {
+        // Handle invalid link format
+        setAlertMessage("Invalid Google Drive link format. Please provide a valid link.");
+        return;
+      }
+
+      // Construct download link
+      const downloadLink = `https://drive.google.com/uc?export=download&id=${extractedToken}`;
 
       const resourceData = {
         courseId,
