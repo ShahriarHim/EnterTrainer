@@ -20,9 +20,17 @@ const Profile = () => {
         const token = localStorage.getItem('jw_token');
         const decodedToken = jwt_decode(token);
         const userId = decodedToken.id;
+        const userType = decodedToken.userType;
 
-        const response = await axios.get(`/user/${userId}`);
-        setUser(response.data);
+        if (userType === 'INS') {
+          // If user type is instructor, fetch instructor information
+          const response = await axios.get(`/instructor/${userId}`);
+          setUser(response.data);
+        } else {
+          // If user type is student, fetch student information
+          const response = await axios.get(`/user/${userId}`);
+          setUser(response.data);
+        }
       } catch (error) {
         console.error(error);
         // Handle error appropriately
@@ -54,8 +62,7 @@ const Profile = () => {
       const token = localStorage.getItem('jw_token');
       const decodedToken = jwt_decode(token);
       const userId = decodedToken.id;
-
-      // Only send the fields that need to be updated
+      const userType = decodedToken.userType;
       const fieldsToUpdate = {
         name: updatedUserInfo.name,
         email: updatedUserInfo.email,
@@ -64,10 +71,19 @@ const Profile = () => {
         university: updatedUserInfo.university,
         bloodGroup: updatedUserInfo.bloodGroup,
       };
-
-      const response = await axios.put(`/user/${userId}`, fieldsToUpdate);
-      setUser(response.data);
-      setEditing(false);
+      if (userType === 'INS') {
+        // If user type is instructor, fetch instructor information
+        const response = await axios.put(`/instructor/${userId}`, fieldsToUpdate);
+        setUser(response.data);
+        setEditing(false);
+        console.log('Profile updated successfully:', response.data);
+      } else {
+        // If user type is student, fetch student information
+        const response = await axios.put(`/user/${userId}`, fieldsToUpdate);
+        setUser(response.data);
+        setEditing(false);
+        console.log('Profile updated successfully:', response.data);
+      }
     } catch (error) {
       console.error(error);
       // Handle error appropriately

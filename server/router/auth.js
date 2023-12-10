@@ -226,7 +226,7 @@ router.post("/signin", async (req, res) => {
 });
 
 
-//for about me //
+//for user about me //
 router.get("/user/:id", async (req, res) => {
   const user_Id = req.params.id;
 
@@ -259,6 +259,44 @@ router.put("/user/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
+// Get instructor profile by ID
+router.get("/instructor/:id", async (req, res) => {
+  const instructorId = req.params.id;
+
+  try {
+    const instructor = await Instructor.findById(instructorId);
+    if (!instructor) {
+      return res.status(404).json({ error: "Instructor not found" });
+    }
+    res.status(200).json(instructor);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
+// Update instructor profile
+router.put("/instructor/:id", async (req, res) => {
+  const instructorId = req.params.id;
+  const updatedInstructorInfo = req.body;
+
+  try {
+    const instructor = await Instructor.findByIdAndUpdate(instructorId, updatedInstructorInfo, { new: true });
+
+    if (!instructor) {
+      return res.status(404).json({ error: "Instructor not found" });
+    }
+
+    res.status(200).json(instructor);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 
 // Fetch all users
