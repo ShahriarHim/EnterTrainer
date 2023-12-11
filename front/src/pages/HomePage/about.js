@@ -13,7 +13,7 @@ function About() {
             <div className="position-relative h-100">
               <img
                 className="img-fluid position-absolute w-100 h-100"
-                src="/assets/img/about.jpg"
+                src="/assets/img/Logo2.png"
                 alt=""
                 style={{ objectFit: "cover" }}
               />

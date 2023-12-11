@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './forgotPass.css';
+// import './forgotPass.css';
 
 const ResetPass = () => {
   const navigate = useNavigate();
@@ -37,26 +37,26 @@ const ResetPass = () => {
   };
 
   return (
-    <div className="card">
+    <div className="">
       <p className="lock-icon"><i className="fas fa-lock"></i></p>
       <h2>Reset Password</h2>
       <input
         type="text"
-        className="passInput"
+        className=""
         placeholder="Email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
-        className="passInput"
+        className=""
         placeholder="Enter Token"
         value={token}
         onChange={(e) => setToken(e.target.value)}
       />
       <input
         type="password"
-        className="passInput"
+        className=""
         placeholder="New Password"
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}
