@@ -60,7 +60,19 @@ const ProgressBar = () => {
     fetchCourseContent();
     fetchCourseName();
   }, [courseId, totalWeeks, userId]);
-
+  const handleDownloadCertificate = () => {
+    try {
+      // Create a download link and trigger the download
+      const downloadLink = document.createElement('a');
+      downloadLink.href = 'https://drive.google.com/uc?export=download&id=1XmocFmuRPNkx5ZGrAeoMLrDIno9UK3Qm';
+      downloadLink.download = 'Certificate.pdf';
+      downloadLink.click();
+    } catch (error) {
+      console.error('Error downloading certificate:', error);
+      // Handle error (e.g., show an error message to the user)
+    }
+  };
+  
   return (
     <div className="progress-bar-container">
       <Link to={`/manage-course/${courseId}`}>
@@ -75,6 +87,12 @@ const ProgressBar = () => {
           {progress}%
         </progress>
       </div>
+
+      {progress === 100 && (
+        <button onClick={handleDownloadCertificate}>
+          Download Certificate
+        </button>
+      )}
     </div>
   );
 };
