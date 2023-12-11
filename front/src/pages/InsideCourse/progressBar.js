@@ -89,9 +89,12 @@ const ProgressBar = () => {
       </div>
 
       {progress === 100 && (
+        <div>
+        <h4 style= {{color: 'green',textAlign: 'center'}}>Congratulations! You have done it!!</h4>
         <button onClick={handleDownloadCertificate}>
           Download Certificate
         </button>
+        </div>
       )}
     </div>
   );

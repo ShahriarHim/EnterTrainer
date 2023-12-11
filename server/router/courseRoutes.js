@@ -255,14 +255,16 @@ router.get('/:courseId/feedback/:studentId', async (req, res) => {
   }
 });
 // Update feedback route
-router.put('/:feedbackId', async (req, res) => {
-  const { feedbackId } = req.params;
+router.put('/feedback/:assignmentId', async (req, res) => {
+  const { assignmentId } = req.params;
   const { feedback, marks, grade } = req.body;
 
   try {
-    const existingFeedback = await Feedback.findById(feedbackId);
+    // Find the feedback document using the assignmentId
+    const existingFeedback = await Feedback.findOne({ assignmentId });
+
     if (!existingFeedback) {
-      return res.status(404).json({ error: 'Feedback not found' });
+      return res.status(404).json({ error: 'Feedback not found for the given assignmentId' });
     }
 
     // Update feedback properties

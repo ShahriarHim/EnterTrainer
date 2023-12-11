@@ -338,14 +338,16 @@ const ManageCourse = () => {
 
         {/* Manage and Add Week */}
         <div className="manage-add-week">
-          <div className="manage-course">Manage Course</div>
-          {userType === 'INS' && (
+        {userType === 'INS' && (
+          <div className="manage-course">Manage Course
+          
             <button className="add-week-button" onClick={handleAddWeek}>
               Add Week
             </button>
+            </div>
           )}
         </div>
-
+        
         {/* Week Sections */}
         {weeks.map((week, weekIndex) => (
           <div key={weekIndex} className="week-section">

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams ,Link} from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-
+// import Select from 'react-select';
 const FeedbackManagement = () => {
   const { courseId } = useParams();
   const [userType, setUserType] = useState('');
@@ -95,8 +95,9 @@ const FeedbackManagement = () => {
   const handleFeedbackSubmit = (assignmentId, feedback, marks, grade) => {
     // Assuming you have the feedback ID associated with the assignment
     const feedbackId = assignmentId; // You might need to adjust this based on your actual data structure
-  
+
     // Check if feedbackId exists, indicating an existing feedback
+    console.log('feedbackId', feedbackId);
     if (feedbackId) {
       // If feedbackId exists, update the feedback
       axios.put(`http://localhost:5000/course/feedback/${feedbackId}`, {
@@ -106,9 +107,11 @@ const FeedbackManagement = () => {
       })
         .then((response) => {
           console.log('Feedback updated successfully:', response.data);
+          alert("Feedback updated successfully!")
+
           // Update the feedbackSubmitted flag for the assignment
           const updatedAssignments = userAssignments.map((a) => {
-            if (a._id === assignmentId) {
+            if (a.assignmentId === assignmentId) {
               return { ...a, feedbackSubmitted: true };
             }
             return a;
@@ -144,12 +147,35 @@ const FeedbackManagement = () => {
         });
     }
   };
-  
+
+
   return (
-    <div>
-      {/* Main Content */}
-      <div>
-        {/* Select User and Show Assignments */}
+    <div style={{ display: "flex", height: "100vh" }}>
+      <div
+        style={{
+          backgroundColor: "#333",
+          color: "#fff",
+          padding: "20px",
+          width: "200px",
+          height: "100%",
+          position: "fixed",
+          left: 0,
+          top: 0,
+        }}
+      >
+        <Link
+          to={`/manage-course/${courseId}`}
+          style={{
+            display: "block",
+            textAlign: "center",
+            color: "#06BBCC",
+            marginBottom: "20px",
+          }}
+        >
+          Back to Course
+        </Link>
+      </div>
+      <div  style={{ flex: 1, marginLeft: '200px', padding: '20px', width:'70' }}>
         {userType === 'INS' && (
           <div>
             <h2>Select User and Show Assignments</h2>
@@ -170,7 +196,7 @@ const FeedbackManagement = () => {
             </select>
 
             {selectedUser && (
-              <div>
+              <div style={{width:'500px'}}>
                 <h3>Assignments for {selectedUser.userName}</h3>
                 {userAssignments.length === 0 ? (
                   <p>No assignments submitted by the user.</p>
@@ -178,7 +204,7 @@ const FeedbackManagement = () => {
                   userAssignments.map((assignment) => (
                     <div key={assignment._id}>
                       <h4>Week {assignment.weekNumber} Submission</h4>
-                      <p>Submission Link: {assignment.submissionLink}</p>
+                      <p>Submitted Assignment: {assignment.submissionLink}</p>
                       <p>Submission Date: {assignment.submissionDate}</p>
 
                       {/* Feedback Form */}
@@ -245,14 +271,14 @@ const FeedbackManagement = () => {
               userAssignments.map((assignment) => (
                 <div key={assignment._id}>
                   <h4>Week {assignment.weekNumber} Submission</h4>
-                  <p>Submission Link: {assignment.submissionLink}</p>
+                  <p>Submitted Assignment: {assignment.submissionLink}</p>
                   <p>Submission Date: {assignment.submissionDate}</p>
 
                   {/* Feedback Display */}
-                  <h5>Feedback</h5>
-                  <p>{assignment.feedback || 'No feedback available'}</p>
-                  <p>Marks: {assignment.marks}</p>
-                  <p>Grade: {assignment.grade}</p>
+                  <h5 style={{color:'green'}}>Feedback</h5>
+                  <h6>{assignment.feedback || 'No feedback available'}</h6>
+                  <h6>Marks: {assignment.marks}</h6>
+                  <h6>Grade: {assignment.grade}</h6>
                 </div>
               ))
             )}
