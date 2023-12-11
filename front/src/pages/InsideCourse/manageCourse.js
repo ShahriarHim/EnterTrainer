@@ -319,6 +319,9 @@ const ManageCourse = () => {
           <button onClick={() => handleNavigate(`/live-Session/${courseId}`)}>
             Live Session
           </button>
+          <button onClick={() => handleNavigate(`/feedback/${courseId}`)}>
+            Feedback
+          </button>
         </div>
 
 

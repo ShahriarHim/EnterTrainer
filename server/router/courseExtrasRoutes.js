@@ -184,6 +184,7 @@ router.get("/show-events", async (req, res) => {
 });
 
 
+// Assignment submission Route
 
 router.post('/submit-assignment', async (req, res) => {
   try {
@@ -219,7 +220,7 @@ router.post('/submit-assignment', async (req, res) => {
   }
 });
 
-// Add this route to your backend Express app
+// Assignment Fetching Route
 router.get('/submissions/:userId/:courseId', async (req, res) => {
   try {
     const { userId, courseId } = req.params;
@@ -234,6 +235,8 @@ router.get('/submissions/:userId/:courseId', async (req, res) => {
   }
 });
 
+
+// Live session Route
 router.post('/create-session/:courseId', async (req, res) => {
   try {
     const { topic, link, date, time } = req.body;

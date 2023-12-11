@@ -69,7 +69,7 @@ const ProjectManagement = () => {
       return;
     }
 
-    axios.post(`http://localhost:5000/projects/create-project/${courseId}`, newProject)
+    axios.post(`http://localhost:5000/extras/create-project/${courseId}`, newProject)
       .then((response) => {
         const updatedProjects = [...projects, { ...response.data.project, allowSubmission: true }];
         setProjects(updatedProjects);

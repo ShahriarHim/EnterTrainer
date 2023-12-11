@@ -1,32 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const Courses = require("../model/Course/coursesSchema");
-// const multer = require('multer');
-const Subscription = require('../model/Course/subscription')
+const Subscription = require('../model/Course/subscription');
 const InstructorCourse = require('../model/Instructor/instructorCourseSchema');
-const User = require('../model/userSchema');
-// const upload = require("../multerConfig");
+const Feedback = require('../model/feedbackSchema'); // Import the feedback schema
 
-router.post("/create-course",  async (req, res) => {
-
-  const {  genre, name, details } = req.body;
- 
+// Create course
+router.post("/create-course", async (req, res) => {
+  const { genre, name, details } = req.body;
 
   try {
     const existingCourse = await Courses.findOne({ name });
 
     if (existingCourse) {
-      return res
-        .status(422)
-        .json({ error: "Course with the same unique_ID already exists" });
+      return res.status(422).json({ error: "Course with the same unique_ID already exists" });
     }
 
     const course = new Courses({
       genre,
       name,
       details,
-
     });
+
     const savedCourse = await course.save();
 
     res.status(201).json({
@@ -39,6 +34,8 @@ router.post("/create-course",  async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
+// Get courses by genre
 router.post('/genre', async (req, res) => {
   const { genre } = req.body;
 
@@ -55,12 +52,10 @@ router.post('/genre', async (req, res) => {
   }
 });
 
-
+// Get all courses
 router.get("/all-courses", async (req, res) => {
-
   try {
     const courses = await Courses.find();
-    console.log(courses);
     res.status(200).json(courses);
   } catch (error) {
     console.error(error);
@@ -68,39 +63,7 @@ router.get("/all-courses", async (req, res) => {
   }
 });
 
-// const storage = multer.diskStorage({
-
-//   destination: function (req, file, cb) {
-//     cb(null, 'uploads/'); // Set the destination folder for storing uploaded files
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
-//   },
-// });
-
-// // Initialize upload
-// const upload = multer({
-//   storage: storage,
-//   limits: { fileSize: 100000000 }, // Set the file size limit in bytes (e.g., 100MB)
-// }).single('videoFile'); // 'videoFile' should match the name attribute in your form
-
-// // Example route for uploading videos
-// router.post('/upload-video', (req, res) => {
-//   upload(req, res, (err) => {
-//     if (err) {
-//       return res.status(500).json({ message: err.message });
-//     }
-    
-//     // If the upload is successful, you can access the uploaded file details in req.file
-//     const { videoTitle } = req.body;
-//     const videoPath = req.file.path;
-
-//     // Now you can save the video title and file path to your database or perform other actions
-//     // For demonstration purposes, let's just send a success response
-//     res.json({ message: 'Video uploaded successfully', videoTitle, videoPath });
-//   });
-// });
-
+// Get course by ID
 router.get('/:courseId', async (req, res) => {
   const { courseId } = req.params;
 
@@ -117,13 +80,9 @@ router.get('/:courseId', async (req, res) => {
   }
 });
 
-
-
-
-
+// Subscribe to a course
 router.post('/subscribe', async (req, res) => {
-  const { user_Id , course_Id} = req.body;
-
+  const { user_Id, course_Id } = req.body;
 
   try {
     const course = await Courses.findById(course_Id);
@@ -131,13 +90,11 @@ router.post('/subscribe', async (req, res) => {
       return res.status(404).json({ error: 'Course not found' });
     }
 
-    // Check if the user is already subscribed
     const existingSubscription = await Subscription.findOne({ user_Id, course_Id });
     if (existingSubscription) {
       return res.status(400).json({ error: 'User is already subscribed to this course' });
     }
 
-    // Create a new subscription
     const subscription = new Subscription({
       user_Id,
       course_Id,
@@ -147,33 +104,31 @@ router.post('/subscribe', async (req, res) => {
 
     res.json({ message: 'Subscription successful' });
   } catch (error) {
-    console.error(error); // Log the error to your console
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
 
+// Get user subscriptions
 router.get('/subscriptions/:userId', async (req, res) => {
   try {
-    const userId = req.params.userId; // Extracting user ID from the request parameter
+    const userId = req.params.userId;
 
-    // Find subscriptions for the given user ID and populate course details
     const userSubscriptions = await Subscription.find({ user_Id: userId })
       .populate({
         path: 'course_Id',
-        select: 'name genre details' // Update to select 'name' field from the Courses model
+        select: 'name genre details'
       })
       .exec();
 
-    // Check if userSubscriptions array is empty
     if (userSubscriptions.length === 0) {
       return res.json({ message: 'No subscriptions yet for this user.' });
     }
 
-    // Extract course details from subscriptions and send as a response
     const coursesSubscribed = userSubscriptions.map(subscription => {
       return {
         courseId: subscription.course_Id._id,
-        courseName: subscription.course_Id.name, // Accessing the 'name' field here
+        courseName: subscription.course_Id.name,
         genre: subscription.course_Id.genre,
         details: subscription.course_Id.details,
         subscriptionDate: subscription.subscriptionDate
@@ -187,28 +142,26 @@ router.get('/subscriptions/:userId', async (req, res) => {
   }
 });
 
+// Get instructor courses
 router.get('/Instructor/:instructorId', async (req, res) => {
   try {
     const insId = req.params.instructorId;
 
-    
     const insCourses = await InstructorCourse.find({ instructorId: insId })
       .populate({
         path: 'courseId',
-        select: 'name genre details' 
+        select: 'name genre details'
       })
       .exec();
 
-   
     if (insCourses.length === 0) {
       return res.json({ message: 'No subscriptions yet for this user.' });
     }
 
-    
     const coursesTaken = insCourses.map(insCourses => {
       return {
         courseId: insCourses.courseId._id,
-        courseName: insCourses.courseId.name, 
+        courseName: insCourses.courseId.name,
         genre: insCourses.courseId.genre,
         details: insCourses.courseId.details,
       };
@@ -221,52 +174,117 @@ router.get('/Instructor/:instructorId', async (req, res) => {
   }
 });
 
-
+// Get enrolled users for a course
 router.get('/enrolled-users/:courseId', async (req, res) => {
   try {
-    const courseId = req.params.courseId; // Extracting course ID from the request parameter
+    const courseId = req.params.courseId;
 
-    // Find subscriptions for the given course ID and populate user details
     const userSubscriptions = await Subscription.find({ course_Id: courseId })
       .populate({
         path: 'user_Id',
-        select: 'name' // Selecting 'userId' and 'name' fields from the Users model
+        select: 'name'
       })
       .exec();
 
-    // Check if courseSubscriptions array is empty
     if (userSubscriptions.length === 0) {
       return res.json({ message: 'No subscriptions yet for this course.' });
     }
 
-    // Extract user details from subscriptions and send as a response
     const userSubscribed = userSubscriptions.map(subscription => {
       return {
         userId: subscription.user_Id._id,
-        userName: subscription.user_Id.name, // Accessing the 'name' field here
+        userName: subscription.user_Id.name,
         subscriptionDate: subscription.subscriptionDate
       };
     });
 
     res.json({ userSubscribed });
-  
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server Error' });
   }
 });
 
+// Add route for submitting feedback
+router.post('/:courseId/submit-feedback', async (req, res) => {
+  const { courseId } = req.params;
+  const { studentId, instructorId, assignmentId, feedback, marks, grade } = req.body;
 
+  try {
+    const course = await Courses.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
 
+    const newFeedback = new Feedback({
+      courseId,
+      studentId,
+      instructorId,
+      assignmentId,
+      feedback,
+      marks,
+      grade,
+    });
 
+    await newFeedback.save();
 
+    res.json({ message: 'Feedback submitted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
 
-// Route for instructors to join courses
-router.post('/instructor-enrollment', async (req, res) =>  {
+// Add route for fetching all feedback for a course and student
+router.get('/:courseId/feedback/:studentId', async (req, res) => {
+  const { courseId, studentId } = req.params;
+
+  try {
+    const course = await Courses.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const feedbackList = await Feedback.find({ courseId, studentId });
+
+    res.json({ feedbackList });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
+// Update feedback route
+router.put('/:feedbackId', async (req, res) => {
+  const { feedbackId } = req.params;
+  const { feedback, marks, grade } = req.body;
+
+  try {
+    const existingFeedback = await Feedback.findById(feedbackId);
+    if (!existingFeedback) {
+      return res.status(404).json({ error: 'Feedback not found' });
+    }
+
+    // Update feedback properties
+    existingFeedback.feedback = feedback;
+    existingFeedback.marks = marks;
+    existingFeedback.grade = grade;
+
+    // Save the updated feedback
+    await existingFeedback.save();
+
+    res.json({ message: 'Feedback updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
+
+// Instructor enrollment route
+router.post('/instructor-enrollment', async (req, res) => {
   const { instructorId, courseId } = req.body;
 
   try {
-    // Check if the instructor is already associated with the course
     const existingAssociation = await InstructorCourse.findOne({
       instructorId,
       courseId,
@@ -276,7 +294,6 @@ router.post('/instructor-enrollment', async (req, res) =>  {
       return res.status(422).json({ error: 'Instructor is already associated with this course' });
     }
 
-    // Create a new association between the instructor and the course
     const newAssociation = new InstructorCourse({
       instructorId,
       courseId,
@@ -294,6 +311,5 @@ router.post('/instructor-enrollment', async (req, res) =>  {
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
+
 module.exports = router;
-
-
