@@ -22,7 +22,7 @@ import Event from "../pages/Comp/event";
 import ProgressBar from "../pages/InsideCourse/progressBar";
 import LiveSession from "../pages/InsideCourse/liveSession";
 import FeedbackManagement from "../pages/InsideCourse/feedback";
-
+import CreateCourse from "../pages/Instructor/createCourse";
 const Index = () => {
   return (
     <div>
@@ -30,6 +30,7 @@ const Index = () => {
         <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/home" element={<IndexPage />}></Route>
+        <Route path="/create-course" element={<CreateCourse />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/categories" element={<CourseCategories />}></Route>
         <Route path="/joinform" element={<JoinForm />}></Route>
