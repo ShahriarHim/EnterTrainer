@@ -23,11 +23,13 @@ import ProgressBar from "../pages/InsideCourse/progressBar";
 import LiveSession from "../pages/InsideCourse/liveSession";
 import FeedbackManagement from "../pages/InsideCourse/feedback";
 import CreateCourse from "../pages/Instructor/createCourse";
+import ErrorPage from "../pages/Comp/errorPage";
 const Index = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+        <Route path="/error" element={<ErrorPage />}></Route>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/home" element={<IndexPage />}></Route>
         <Route path="/create-course" element={<CreateCourse />}></Route>

@@ -291,22 +291,22 @@ const ManageCourse = () => {
         </a>
         <p></p>
         {userType === 'INS' && (
-        <a href="#" onClick={() => handleNavigate('/taken-courses')}>
-          Courses
-        </a>
+          <a href="#" onClick={() => handleNavigate('/taken-courses')}>
+            Courses
+          </a>
         )}
         {userType === 'Student' && (
-        <a href="#" onClick={() => handleNavigate('/enrolled-courses')}>
-          Courses
-        </a>
+          <a href="#" onClick={() => handleNavigate('/enrolled-courses')}>
+            Courses
+          </a>
         )}
         {/* Rectangular Card */}
         <div className="info-card">
           <h3>Course Info</h3>
           {userType === 'Student' && (
-          <button onClick={() => handleNavigate(`/progress/${courseId}`)}>
-            Progress
-          </button>
+            <button onClick={() => handleNavigate(`/progress/${courseId}`)}>
+              Progress
+            </button>
           )}
           <h6>Course Expiry Date:</h6>
           <p> [Your Date]</p>
@@ -328,7 +328,7 @@ const ManageCourse = () => {
 
       </div>
       {/* Main Content */}
-      <div style={{ flex: 1, marginLeft: '100px',marginRight:'100px', padding: '20px' }}>
+      <div style={{ flex: 1, marginLeft: '100px', marginRight: '100px', padding: '20px' }}>
         {/* Course Name */}
         <div className="course-name">{courseName}</div>
 
@@ -338,16 +338,17 @@ const ManageCourse = () => {
 
         {/* Manage and Add Week */}
         <div className="manage-add-week">
-        {userType === 'INS' && (
-          <div className="manage-course">Manage Course
-          
-            <button className="add-week-button" onClick={handleAddWeek}>
-              Add Week
-            </button>
+
+          {userType === 'INS' && (
+            <div className="manage-course">Manage Course
+
+              <button className="add-week-button" onClick={handleAddWeek}>
+                Add Week
+              </button>
             </div>
           )}
         </div>
-        
+
         {/* Week Sections */}
         {weeks.map((week, weekIndex) => (
           <div key={weekIndex} className="week-section">
@@ -377,7 +378,7 @@ const ManageCourse = () => {
                         </div>
                       )}
 
-                      {week.assignments.length > 0 && (
+                      {week.assignments.length > 0 && userType==="Student" && (
                         <div className="assignment-input">
                           <label>Assignments:</label>
                           {week.assignments.map((assignment, assignmentIndex) => (
@@ -401,6 +402,8 @@ const ManageCourse = () => {
                           ))}
                         </div>
                       )}
+                      
+
                       {userType === 'INS' && (
                         <button type="button" onClick={handleUpdateWeekData}>
                           Update Data

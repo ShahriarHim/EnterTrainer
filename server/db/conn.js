@@ -9,6 +9,6 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log("Server Connected!");
+    console.log("Server Is Connected!");
   })
   .catch((err) => console.log("Server Not connected"));

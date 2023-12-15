@@ -23,9 +23,12 @@ const EnrolledCourses = () => {
         const fetchCourses = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/course/subscriptions/${userId}`);
-                setCourses(response.data.coursesSubscribed);
+                setCourses(response.data.coursesSubscribed || []);
             } catch (error) {
                 console.error('Error fetching courses:', error);
+                
+
+                  
             }
         };
 
@@ -46,7 +49,7 @@ const EnrolledCourses = () => {
             <div className="course-container">
                 <h2 style={{ textAlign: 'center' }}>Your Subscribed Courses</h2>
                 <div className="cards-container">
-                    {courses.length >= 0 ? (
+                    {courses.length >0 ? (
                         courses.map(course => (
                             <div className="card" key={course.courseId}>
                                 <div className="left-section">
@@ -75,7 +78,7 @@ const EnrolledCourses = () => {
                             </div>
                         ))
                     ) : (
-                        <p>No subscriptions yet for this user.</p>
+                        <h5 style={{textAlign:'center'}}>No subscriptions yet for this user.</h5>
                     )}
                 </div>
             </div>

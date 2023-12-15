@@ -5,6 +5,7 @@ const ProjectSubmission = require("../model/projectSubmission");
 const Event = require("../model/eventSchema");
 const AssignmentSubmission = require("../model/Course/assignmentSubmissionSchema");
 const LiveSession = require("../model/liveSessionSchema");
+const Feedback = require("../model/feedbackSchema");
 
 
 router.post('/create-project/:courseId', async (req, res) => {
@@ -277,6 +278,135 @@ router.delete('/sessions/:courseId/:meetingId', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+
+router.get('/assignmentId/:userId/:courseId/:weekNumber', async (req, res) => {
+  try {
+    const { userId, courseId, weekNumber } = req.params;
+
+    // Call the static method to get the assignment ID
+    const assignmentId = await AssignmentSubmission.getAssignmentId(userId, courseId, weekNumber);
+
+    if (assignmentId) {
+      res.status(200).json({ assignmentId });
+    } else {
+      res.status(404).json({ error: 'Assignment not found' });
+    }
+  } catch (error) {
+    console.error('Error getting assignment ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.post('/submit-feedback', async (req, res) => {
+  try {
+    const { courseId, studentId, instructorId, assignmentId, feedback, marks, grade } = req.body;
+
+    // Check if feedback already exists for the assignment
+    const existingFeedback = await Feedback.findOne({ assignmentId: assignmentId });
+
+    if (existingFeedback) {
+      // If feedback exists, update it
+      existingFeedback.feedback = feedback;
+      existingFeedback.marks = marks;
+      existingFeedback.grade = grade;
+
+      await existingFeedback.save();
+      res.status(200).json({ message: 'Feedback updated successfully' });
+    } else {
+      // If feedback does not exist, create a new feedback
+      const newFeedback = new Feedback({
+        courseId: courseId,
+        studentId: studentId,
+        instructorId: instructorId,
+        assignmentId: assignmentId,
+        feedback: feedback,
+        marks: marks,
+        grade: grade,
+      });
+
+      await newFeedback.save();
+      res.status(201).json({ message: 'Feedback submitted successfully' });
+    }
+  } catch (error) {
+    console.error('Error submitting/updating feedback:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+router.get('/getFeedback/:userId/:courseId', async (req, res) => {
+  try {
+    const { userId, courseId } = req.params;
+
+    const feedbackList = await Feedback.find({
+      studentId: userId,
+      courseId: courseId,
+    }).populate('assignmentId'); // Assuming 'assignmentId' is the field to be populated
+
+    res.status(200).json({ feedbackList });
+  } catch (error) {
+    console.error('Error fetching feedback:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.post('/submit-feedback', async (req, res) => {
+  try {
+    const { courseId, studentId, instructorId, assignmentId, feedback, marks, grade } = req.body;
+
+    // Check if feedback already exists for the assignment
+    const existingFeedback = await Feedback.findOne({ assignmentId: assignmentId });
+
+    if (existingFeedback) {
+      // If feedback exists, update it
+      existingFeedback.feedback = feedback;
+      existingFeedback.marks = marks;
+      existingFeedback.grade = grade;
+
+      await existingFeedback.save();
+      res.status(200).json({ message: 'Feedback updated successfully' });
+    } else {
+      // If feedback does not exist, create a new feedback
+      const newFeedback = new Feedback({
+        courseId: courseId,
+        studentId: studentId,
+        instructorId: instructorId,
+        assignmentId: assignmentId,
+        feedback: feedback,
+        marks: marks,
+        grade: grade,
+      });
+
+      await newFeedback.save();
+      res.status(201).json({ message: 'Feedback submitted successfully' });
+    }
+  } catch (error) {
+    console.error('Error submitting/updating feedback:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
 
 
 

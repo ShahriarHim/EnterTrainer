@@ -25,7 +25,7 @@ const TakenCourses = () => {
         const fetchCourses = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/course/Instructor/${insId}`);
-                setCourses(response.data.coursesTaken);
+                setCourses(response.data.coursesTaken || []);
             } catch (error) {
                 console.error('Error fetching courses:', error);
             }
@@ -71,7 +71,7 @@ const TakenCourses = () => {
                             </div>
                         ))
                     ) : (
-                        <p>No courses taken by this Instructor.</p>
+                        <h5 style={{textAlign:'center'}}>No subscriptions yet for this user.</h5>
                     )}
                 </div>
             </div>
