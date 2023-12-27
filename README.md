@@ -20,14 +20,14 @@ EnterTrainer is a dynamic website designed to empower students with diverse skil
 
 ## Features
 1. **Module-1**
-   - User registration
+   - User Registration
    - User Login
    - Password Recovery
    - Selection of Areas of Interest
    - Subscribing Course
 
 
-2. **Module-2**
+3. **Module-2**
   - Profile Creation (data fetching and showing in profile)
   - Instructors profile (login, registration, and profile)
   - Course Catalogue (for Instructor)
