@@ -3,7 +3,7 @@
 
 
 ## SRS Document of our project
--link: [(http://tinyurl.com/ypp8b2uc)](http://tinyurl.com/ypp8b2uc)
+- link: http://tinyurl.com/ypp8b2uc
 
 ## Table of Contents
 - [Introduction](#introduction)
