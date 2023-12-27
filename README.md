@@ -3,8 +3,7 @@
 
 
 ## SRS Document of our project
--link: https://docs.google.com/document/d/1Zr2VUD27Bk5Iy_8bcgHqd7z9Nwy5f1_o/edit?usp=sharing&ouid=109358207235749643436&rtpof=true&sd=true
-
+-link: [(http://tinyurl.com/ypp8b2uc)](http://tinyurl.com/ypp8b2uc)
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -27,27 +26,28 @@ EnterTrainer is a dynamic website designed to empower students with diverse skil
    - Subscribing Course
 
 
-3. **Module-2**
-  - Profile Creation (data fetching and showing in profile)
-  - Instructors profile (login, registration, and profile)
-  - Course Catalogue (for Instructor)
-  - Video Lessons and Assignments (Uploading Tasks)
-  - Work Submission 
+1. **Module-2**
+   - Profile Creation (data fetching and showing in profile)
+   - Instructors profile (login, registration, and profile)
+   - Course Catalogue (for Instructor)
+   - Video Lessons and Assignments (Uploading Tasks)
+   - Work Submission 
 
 
-3. **Module-3**
-  - Live session (In-person & online)
-  - Progress Dashboard (things that students have learned so far)
-  - Feedback and Assessment (by the selected instructor or Experts)
-  - Peer Review (students of similar interests get to interact with each other)
-  - Resource Library
+1. **Module-3**
+   - Live session
+   - Progress Dashboard (things that students have learned so far)
+   - Feedback and Assessment (by the selected instructor or Experts)
+   - Peer Review (students of similar interests get to interact with each other)
+   - Resource Library
 
 
-4. **Module-4**
-  - Collaborative Projects
-  - Event Integration (chances of performing in events)
-  - Resources can be downloaded.
-  - Certification
+1. **Module-4**
+   - Collaborative Projects
+   - Event Integration (chances of performing in events)
+   - Resources can be downloaded
+   - Certification
+   - Rewards throughout the course
 
 
 
