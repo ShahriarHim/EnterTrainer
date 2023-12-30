@@ -53,16 +53,17 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://enter-trainer-bend.vercel.app/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+const response = await fetch('https://enter-trainer-bend.vercel.app/signin', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    email: formData.email,
+    password: formData.password,
+  }),
+  credentials: 'include', // Add this line
+});
 
       const data = await response.json();
       console.log(data);
