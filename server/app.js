@@ -5,13 +5,14 @@ const app = express();
 app.use(bodyParser.json());
 const passport = require("passport");
 const cors = require("cors");
-app.use(cors(
-  {
-    origin: ["enter-trainer.vercel.app"],
-    methods:["POST","GET"],
-    credentials: true
-  }
-));
+app.use(
+  cors({
+    origin: ["https://enter-trainer.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
+
 
 const jwt = require("jsonwebtoken");
 
