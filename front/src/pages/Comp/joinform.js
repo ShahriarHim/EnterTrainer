@@ -18,7 +18,7 @@ const JoinForm = () => {
 
 
     try {
-      const response = await fetch('https://enter-trainer-bend.vercel.app/signup', {
+      const response = await fetch('/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-const response = await fetch('https://enter-trainer-bend.vercel.app/signin', {
+const response = await fetch('/signin', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
