@@ -18,7 +18,7 @@ const JoinForm = () => {
 
 
     try {
-      const response = await fetch('https://enter-trainer.vercel.app/signup', {
+      const response = await fetch('enter-trainer-bend.vercel.app/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://enter-trainer.vercel.app/signin', {
+      const response = await fetch('enter-trainer-bend.vercel.app/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const JoinForm = () => {
       if (response.ok) {
         localStorage.setItem("jw_token", data.token);
         alert('Log in Successful!');
-        navigate('/home');
+        navigate('enter-trainer-bend.vercel.app/home');
       } else {
 
         alert('Invalid credentials! Try again');
