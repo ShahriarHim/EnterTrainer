@@ -2,7 +2,7 @@
   "name": "creating-registration-and-login-form-in-nodejs-and-mongodb",
   "version": "1.0.0",
   "description": "This is a user login and registration app using Node.js, Express, Mongoose and express-sessions. ",
-  "main": "server.js",
+  "main": "app.js",
   "engines":{
     "node" : "14.x"
   },
@@ -32,7 +32,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
