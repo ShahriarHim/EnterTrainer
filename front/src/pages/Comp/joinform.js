@@ -72,7 +72,7 @@ const response = await fetch('https://enter-trainer-bend.vercel.app/signin', {
       if (response.ok) {
         localStorage.setItem("jw_token", data.token);
         alert('Log in Successful!');
-        navigate('https://enter-trainer-bend.vercel.app/home');
+        navigate('/home');
       } else {
 
         alert('Invalid credentials! Try again');
