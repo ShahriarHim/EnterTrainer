@@ -53,7 +53,7 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-const response = await fetch('/signin', {
+const response = await fetch('https://enter-trainer-api.vercel.app/signin', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
