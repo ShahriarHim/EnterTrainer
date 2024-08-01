@@ -1,9 +1,17 @@
-import React from 'react';
-import Index from './routes';
+import './App.css';
+import Login from './pages/login';
+import Signup from './pages/signup';
 
+function App() {
+  return (
+    <div>
 
-const App = () => {
-  return <Index/>;
-};
+      {/* <Login/> */}
+      <Signup/>
+      
+     
+    </div>
+  );
+}
 
 export default App;
