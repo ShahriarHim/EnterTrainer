@@ -29,7 +29,7 @@ const ProjectManagement = () => {
       setUserId(decodedToken.id);
     }
 
-    axios.get(`http://localhost:5000/extras/showProjects/${userId}`)
+    axios.get(`http://entertrainer-2.onrender.com/extras/showProjects/${userId}`)
       .then((response) => {
         console.log('Response:', response.data); // Log the entire response object
 
@@ -49,7 +49,7 @@ const ProjectManagement = () => {
 
 
 
-    axios.get(`http://localhost:5000/course/enrolled-users/${courseId}`)
+    axios.get(`http://entertrainer-2.onrender.com/course/enrolled-users/${courseId}`)
       .then((response) => {
         const userSubscribed = response.data.userSubscribed || [];
         if (!Array.isArray(userSubscribed)) {
@@ -69,7 +69,7 @@ const ProjectManagement = () => {
       return;
     }
 
-    axios.post(`http://localhost:5000/extras/create-project/${courseId}`, newProject)
+    axios.post(`http://entertrainer-2.onrender.com/extras/create-project/${courseId}`, newProject)
       .then((response) => {
         const updatedProjects = [...projects, { ...response.data.project, allowSubmission: true }];
         setProjects(updatedProjects);
@@ -104,13 +104,13 @@ const ProjectManagement = () => {
     console.log('Project ID:', project._id);
 
     // Check if submission exists for the project
-    axios.get(`http://localhost:5000/extras/check-submission/${project._id}`)
+    axios.get(`http://entertrainer-2.onrender.com/extras/check-submission/${project._id}`)
       .then((response) => {
         if (response.data.submitted) {
           alert('Project already submitted');
         } else {
           // If submission doesn't exist, submit the work
-          axios.post(`http://localhost:5000/extras/submit-work/${project._id}/${userId}`, {
+          axios.post(`http://entertrainer-2.onrender.com/extras/submit-work/${project._id}/${userId}`, {
             submission: project.submission,
           })
             .then((submitResponse) => {

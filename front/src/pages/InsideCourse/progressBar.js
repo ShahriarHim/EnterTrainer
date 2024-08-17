@@ -28,7 +28,7 @@ const ProgressBar = () => {
         setTotalWeeks(weeks.length);
 
         // Fetch submissions for the user and course
-        const submissionsResponse = await axios.get(`http://localhost:5000/extras/submissions/${userId}/${courseId}`);
+        const submissionsResponse = await axios.get(`http://entertrainer-2.onrender.com/extras/submissions/${userId}/${courseId}`);
         const submissions = submissionsResponse.data.submissions;
 
         // Calculate the number of weeks with submissions

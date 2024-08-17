@@ -11,6 +11,8 @@ const IndexPage = () => {
   const [isInstructor, setIsInstructor] = useState(false);
   const [userName, setUserName] = useState('');
 
+
+
   useEffect(() => {
     // Retrieve the JWT token from localStorage
     const token = localStorage.getItem('jw_token');
@@ -34,7 +36,7 @@ const IndexPage = () => {
       {isInstructor ? <ShowAllCourses /> : <FilterInterest />}
       <h2 style={{ textAlign: 'center' }}>Welcome! Hello... {userName}</h2>
       <Service />
-
+ 
       {/* Add a button to navigate to Create Course page */}
       {isInstructor && (
         <Link to="/create-course" style={{ display: 'block', textAlign: 'center', marginTop: '20px' }}>

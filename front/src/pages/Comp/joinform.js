@@ -13,12 +13,13 @@ const JoinForm = () => {
     cpassword: '',
   });
 
+  
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
 
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('https://entertrainer-2.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-const response = await fetch('https://enter-trainer-api.vercel.app/signin', {
+const response = await fetch('https://entertrainer-2.onrender.com/signin', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -84,6 +85,7 @@ const response = await fetch('https://enter-trainer-api.vercel.app/signin', {
 
   };
 
+  // Guest login handler
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -177,7 +179,9 @@ const response = await fetch('https://enter-trainer-api.vercel.app/signin', {
               <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
                 Go to Home
               </Link>
-
+              <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
+                Continue as Guest
+              </Link>
             </form>
             <form action="#" className="signup" onSubmit={handleSignupSubmit}>
               <div className="field">

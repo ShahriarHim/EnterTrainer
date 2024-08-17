@@ -32,7 +32,7 @@ const Event = () => {
             // Fetch other necessary details from token if required
         }
 
-        axios.get("http://localhost:5000/extras/show-events")
+        axios.get("http://entertrainer-2.onrender.com/extras/show-events")
             .then((response) => {
                 setEvents(response.data.events);
             })
@@ -50,7 +50,7 @@ const Event = () => {
         };
 
         // Example POST request to save event details
-        axios.post("http://localhost:5000/extras/create-event", updatedEventDetails)
+        axios.post("http://entertrainer-2.onrender.com/extras/create-event", updatedEventDetails)
             .then((response) => {
                 // Handle success
                 console.log("Event created:", response.data);

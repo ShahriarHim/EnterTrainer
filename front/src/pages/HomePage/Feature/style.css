@@ -1,0 +1,364 @@
+article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+article a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+/* basic article elements styling */
+article h2 {
+  margin: 0 0 18px 0;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-body {
+  padding: 24px;
+}
+
+article a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #28666e;
+}
+
+article a:focus {
+  outline: 1px dotted #28666e;
+}
+
+article a .icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  transform: translateX(var(--link-icon-translate));
+  opacity: var(--link-icon-opacity);
+  transition: all 0.3s;
+}
+
+/* using the has() relational pseudo selector to update our custom properties */
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+
+/************************ 
+Generic layout (demo looks)
+**************************/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* body {
+  margin: 0;
+  padding: 48px 0;
+  font-family: "Figtree", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  background-image: linear-gradient(45deg, #7c9885, #b5b682);
+  min-height: 100vh;
+} */
+
+.articles {
+  display: grid;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+@media screen and (max-width: 960px) {
+  article {
+    container: card/inline-size;
+  }
+  .article-body p {
+    display: none;
+  }
+}
+
+@container card (min-width: 380px) {
+  .article-wrapper {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+  .article-body {
+    padding-left: 0;
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  figure img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+/* General styling for buttons and layout */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Add gap between buttons */
+  margin: 50px;
+}
+
+button {
+  background-color: #06bbcc;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* .filter-bar {
+  display: block;
+  width: 100%;
+  max-width: 400px; 
+  margin: 20px auto; 
+} */
+
+/* Styles for the course creation form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px; /* Restrict maximum width */
+  margin: 0 auto; /* Center the form */
+}
+
+form input {
+  padding: 10px;
+  font-size: 14px;
+}
+
+form button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #06bbcc;
+  color: black;
+  border: none;
+  border-radius: 4px;
+}
+
+/* form button:hover {
+  background-color: #265c61;
+} */
+
+/* Styling for articles */
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+article {
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.article-wrapper {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.article-wrapper figure {
+  margin: 0;
+}
+
+.article-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.article-body {
+  padding: 15px;
+}
+
+.article-body h2 {
+  margin-top: 0;
+}
+
+.article-body p {
+  margin: 10px 0;
+}
+
+.read-more {
+  text-decoration: none;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.read-more .icon {
+  margin-left: 5px;
+}
+/* Container for filter bar and dropdown */
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between filter bar and dropdown */
+  margin: 20px auto; /* Center the container */
+}
+
+/* Style for filter dropdown */
+.filter-dropdown {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 150px; /* Restrict maximum width */
+  margin-bottom: 10px;
+}
+
+.filter-bar {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 400px; /* Restrict maximum width */
+  width: 100%; /* Allow it to expand to container width */
+}
+/* style.css */
+
+.button-container button.active {
+  border-bottom: 3px solid #000000;
+}
+/* For Instructor ID and Find Button */
+.instructor-id-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.small-input {
+  width: 25%; /* 1/4th of the total width */
+  padding: 10px;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.find-button {
+  width: calc(25% / 3); /* 1/3rd of the input size */
+  padding: 9px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  background-color: #06bbcc;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+/* For Select and Remove Buttons */
+.select-remove-container {
+  display: flex;
+  gap: 5px; /* 10px gap between the buttons */
+  margin-bottom: 20px;
+}
+
+.small-button {
+  width: calc(25% / 3); /* 1/6th of the total width */
+  margin-left: 5px;
+  padding: 9px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.small-button:hover {
+  background-color: #164373;
+}
+/* style.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.enroll-modal, .instructor-course-management {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 60%; /* Customize size as needed */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  float: right;
+  margin-top: -10px;
+}
+
+

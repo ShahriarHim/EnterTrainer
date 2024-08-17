@@ -54,7 +54,7 @@ EnterTrainer is a dynamic website designed to empower students with diverse skil
 2. Open the project directory:
 3. Install dependencies:
 4. Start the application:
-5. Open the web browser and visit `http://localhost:3000` to access the website.
+5. Open the web browser and visit `http://entertrainer-2.onrender.com` to access the website.
 
 ## Usage
 

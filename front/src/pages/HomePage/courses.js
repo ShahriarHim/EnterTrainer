@@ -1,0 +1,167 @@
+import React from "react";
+// import './Courses.css'; // Add your styling
+import Navbar from "../Comp/navbar";
+import Footer from "../Comp/footer";
+import CourseCategories from "./categories";
+
+const Courses = () => {
+    return (
+        <div>
+            {/* Category Start */}
+            <div className="">
+                <div className="">
+                    {/* <div className="text-center mb-5">
+                        <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: '5px' }}>Subjects</h5>
+                        <h1>Explore Top Subjects</h1>
+                    </div> */}
+                    {/* <div className="row">
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-1.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Web Design</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-2.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Development</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-3.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Game Design</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-4.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Apps Design</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-5.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Marketing</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-6.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Research</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-7.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">Content Writing</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mb-4">
+                            <div className="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img className="img-fluid" src="/assets/img/cat-8.jpg" alt=""/>
+                                <a className="cat-overlay text-white text-decoration-none" href="">
+                                    <h4 className="text-white font-weight-medium">SEO</h4>
+                                    <span>100 Courses</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div> */}
+                    <CourseCategories />
+                </div>
+            </div>
+            {/* Category End */}
+
+            {/* Courses Start */}
+            <div className="container-fluid py-5">
+                <div className="container py-5">
+                    <div className="text-center mb-5">
+                        <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: '5px' }}>Courses</h5>
+                        <h1>Our Popular Courses</h1>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-4 col-md-6 mb-4">
+                            <div className="rounded overflow-hidden mb-2">
+                                <img className="img-fluid" src="/assets/img/course-1.jpg" alt="" />
+                                <div className="bg-secondary p-4">
+                                    <div className="d-flex justify-content-between mb-3">
+                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>25 Students</small>
+                                        <small className="m-0"><i className="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                                    </div>
+                                    <a className="h5" href="">Web design & development courses for beginner</a>
+                                    <div className="border-top mt-4 pt-4">
+                                        <div className="d-flex justify-content-between">
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                            <h5 className="m-0">$99</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 mb-4">
+                            <div className="rounded overflow-hidden mb-2">
+                                <img className="img-fluid" src="/assets/img/course-2.jpg" alt="" />
+                                <div className="bg-secondary p-4">
+                                    <div className="d-flex justify-content-between mb-3">
+                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>25 Students</small>
+                                        <small className="m-0"><i className="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                                    </div>
+                                    <a className="h5" href="">Web design & development courses for beginner</a>
+                                    <div className="border-top mt-4 pt-4">
+                                        <div className="d-flex justify-content-between">
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                            <h5 className="m-0">$99</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 mb-4">
+                            <div className="rounded overflow-hidden mb-2">
+                                <img className="img-fluid" src="/assets/img/course-3.jpg" alt="" />
+                                <div className="bg-secondary p-4">
+                                    <div className="d-flex justify-content-between mb-3">
+                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>25 Students</small>
+                                        <small className="m-0"><i className="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                                    </div>
+                                    <a className="h5" href="">Web design & development courses for beginner</a>
+                                    <div className="border-top mt-4 pt-4">
+                                        <div className="d-flex justify-content-between">
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                            <h5 className="m-0">$99</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* More courses go here */}
+                    </div>
+                </div>
+            </div>
+            {/* Courses End */}
+        </div>
+    );
+};
+
+export default Courses;

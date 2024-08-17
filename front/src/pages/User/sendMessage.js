@@ -18,7 +18,7 @@ const SendMessage = ({ courseId }) => {
             const decodedToken = jwt_decode(token);
             const userId = decodedToken.id;
             console.log('user id', userId);
-            const response = await axios.post('http://localhost:5000/course-content/messages', {
+            const response = await axios.post('http://entertrainer-2.onrender.com/course-content/messages', {
                 courseId,
                 userId,
                 message

@@ -16,7 +16,7 @@ const Chat = ({ courseMessages, courseId }) => {
 
     const fetchMessages = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/course-content/messages/${courseId}`); // Adjust the endpoint
+            const response = await axios.get(`http://entertrainer-2.onrender.com/course-content/messages/${courseId}`); // Adjust the endpoint
             console.log('Fetched messages:', response.data);
             setMessages(response.data);
         } catch (error) {

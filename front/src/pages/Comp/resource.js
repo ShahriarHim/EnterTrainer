@@ -61,7 +61,7 @@ const Resource = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/resources/addOrUpdateResource",
+        "http://entertrainer-2.onrender.com/resources/addOrUpdateResource",
         resourceData
       );
 
@@ -89,7 +89,7 @@ const Resource = () => {
   const getAllResources = async (courseId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/resources/getAllResources/${courseId}`
+        `http://entertrainer-2.onrender.com/resources/getAllResources/${courseId}`
       );
       setWeekResources(response.data.weeks);
     } catch (error) {

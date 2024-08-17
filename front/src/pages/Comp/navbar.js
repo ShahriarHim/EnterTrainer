@@ -30,15 +30,15 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarCollapse">
 
         <div className="navbar-nav ms-auto p-4 p-lg-0">
-          <NavLink to="/" className="nav-item nav-link active">
+          <NavLink to="/" className="nav-item nav-link ">
             Home
           </NavLink>
           <NavLink to="/about" className="nav-item nav-link">
             About
           </NavLink>
-          <NavLink to="/categories" className="nav-item nav-link">
+          {/* <NavLink to="/categories" className="nav-item nav-link">
             Categories
-          </NavLink>
+          </NavLink> */}
           {/*<div className="nav-item dropdown">
              <Link
               to="#"
@@ -63,6 +63,15 @@ const Navbar = () => {
             Contact
           </Link>
         </div> */}
+          <NavLink to="/courses" className="nav-item nav-link">
+            Courses
+          </NavLink>
+          <NavLink to="/instructors" className="nav-item nav-link">
+            Instructors
+          </NavLink>
+          <NavLink to="/feature" className="nav-item nav-link">
+            Features
+          </NavLink>
 
           <NavLink to="/joinform" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
             Join Now<i className="fa fa-arrow-right ms-3"></i>

@@ -58,7 +58,7 @@ const Payment = () => {
           const requestBody = JSON.stringify({ user_Id: userId, course_Id: courseId });
           // console.log('userId', userId);
           // console.log("course Id", courseId);
-          const response = await fetch('http://localhost:5000/course/subscribe', {
+          const response = await fetch('http://entertrainer-2.onrender.com/course/subscribe', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const Payment = () => {
         };
       } else {
         const requestBody = JSON.stringify({ instructorId: userId, courseId: courseId });
-        const response = await fetch('http://localhost:5000/course/instructor-enrollment', {
+        const response = await fetch('http://entertrainer-2.onrender.com/course/instructor-enrollment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

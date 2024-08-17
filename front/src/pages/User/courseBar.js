@@ -19,7 +19,7 @@ const CourseBar = () => {
 
         const fetchCourses = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/course/subscriptions/${userId}`);
+                const response = await axios.get(`http://entertrainer-2.onrender.com/course/subscriptions/${userId}`);
                 setCourses(response.data.coursesSubscribed);
             } catch (error) {
                 console.error('Error fetching courses:', error);
@@ -35,7 +35,7 @@ const CourseBar = () => {
         setSelectedCourse(courseId);
         setSelectedCourseId(courseId);
         try {
-            const response = await axios.get(`http://localhost:5000/course-content/messages/${courseId}`);
+            const response = await axios.get(`http://entertrainer-2.onrender.com/course-content/messages/${courseId}`);
             setCourseMessages(response.data);
         } catch (error) {
             console.error('Error fetching messages:', error);

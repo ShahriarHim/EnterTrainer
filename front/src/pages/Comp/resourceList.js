@@ -10,7 +10,7 @@ const ResourceList = () => {
     // Fetch course details
     const fetchCourse = async () => {
         try {
-          const courseResponse = await fetch(`http://localhost:5000/courses/${courseId}`);
+          const courseResponse = await fetch(`http://entertrainer-2.onrender.com/courses/${courseId}`);
           const courseData = await courseResponse.json();
           console.log('Course Data:', courseData); // Log course data
           setCourse(courseData);
@@ -22,7 +22,7 @@ const ResourceList = () => {
     // Fetch resources for the given course
     const fetchResources = async () => {
       try {
-        const resourcesResponse = await fetch(`http://localhost:5000/resources/getAllResources/${courseId}`);
+        const resourcesResponse = await fetch(`http://entertrainer-2.onrender.com/resources/getAllResources/${courseId}`);
         const resourcesData = await resourcesResponse.json();
         setResources(resourcesData.weeks);
       } catch (error) {

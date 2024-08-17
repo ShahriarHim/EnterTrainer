@@ -8,7 +8,7 @@ const ShowAllCourses = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/course/all-courses');
+                const response = await fetch('http://entertrainer-2.onrender.com/course/all-courses');
                 if (response.ok) {
                     const data = await response.json();
                     setCourses(data);

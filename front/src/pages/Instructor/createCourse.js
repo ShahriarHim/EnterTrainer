@@ -17,7 +17,7 @@ const CreateCourse = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/course/create-course', courseData);
+      const response = await axios.post('http://entertrainer-2.onrender.com/course/create-course', courseData);
 
       if (response.data.success) {
         alert('Course created successfully');

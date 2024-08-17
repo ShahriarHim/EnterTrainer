@@ -1,6 +1,8 @@
 import React from "react";
+import Navbar from "../Comp/navbar";
+import Footer from "../Comp/footer";
 
-const Service= () => {
+function Service() {
   return (
     <div className="container-xxl py-5">
       <div className="container">
@@ -44,6 +46,7 @@ const Service= () => {
         </div>
       </div>
     </div>
+
   );
 }
 

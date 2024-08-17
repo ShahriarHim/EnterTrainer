@@ -24,7 +24,7 @@ const TakenCourses = () => {
         
         const fetchCourses = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/course/Instructor/${insId}`);
+                const response = await axios.get(`http://entertrainer-2.onrender.com/course/Instructor/${insId}`);
                 setCourses(response.data.coursesTaken);
             } catch (error) {
                 console.error('Error fetching courses:', error);

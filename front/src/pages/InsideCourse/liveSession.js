@@ -25,7 +25,7 @@ const LiveSession = () => {
     }
 
     // Fetch existing live sessions for the current courseId
-    axios.get(`http://localhost:5000/extras/sessions/${courseId}`)
+    axios.get(`http://entertrainer-2.onrender.com/extras/sessions/${courseId}`)
       .then((response) => {
         setLiveSessions(response.data);
       })
@@ -39,7 +39,7 @@ const LiveSession = () => {
   };
 
   const handleSubmitSession = () => {
-    axios.post(`http://localhost:5000/extras/create-session/${courseId}`, newSession)
+    axios.post(`http://entertrainer-2.onrender.com/extras/create-session/${courseId}`, newSession)
       .then((response) => {
         setLiveSessions([...liveSessions, response.data]);
         alert('Live Session Created');
@@ -61,7 +61,7 @@ const LiveSession = () => {
   };
 
   const handleDeleteMeeting = (meetingId) => {
-    axios.delete(`http://localhost:5000/extras/sessions/${courseId}/${meetingId}`)
+    axios.delete(`http://entertrainer-2.onrender.com/extras/sessions/${courseId}/${meetingId}`)
       .then(() => {
         // Filter out the deleted meeting from the list
         const updatedMeetings = liveSessions.filter(session => session._id !== meetingId);

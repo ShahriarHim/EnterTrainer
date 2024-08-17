@@ -432,3 +432,6 @@
     padding-right: 0;
     border-right: none;
 }
+.bg-secondary {
+    background-color: #e9ecef !important;
+}

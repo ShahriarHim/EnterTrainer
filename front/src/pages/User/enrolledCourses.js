@@ -22,7 +22,7 @@ const EnrolledCourses = () => {
         // Fetch courses for the user from the backend
         const fetchCourses = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/course/subscriptions/${userId}`);
+                const response = await axios.get(`http://entertrainer-2.onrender.com/course/subscriptions/${userId}`);
                 setCourses(response.data.coursesSubscribed);
             } catch (error) {
                 console.error('Error fetching courses:', error);

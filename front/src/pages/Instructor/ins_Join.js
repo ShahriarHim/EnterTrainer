@@ -174,7 +174,9 @@ const InsJoin = () => {
               <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
                 Go to Home
               </Link>
-
+              <Link to="/" style={{ display: 'block', textAlign: 'center' }}>
+                Continue as Guest
+              </Link>
             </form>
             <form action="#" className="signup" onSubmit={handleSignupSubmit}>
               <div className="field">

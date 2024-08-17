@@ -69,7 +69,7 @@ const ManageCourse = () => {
       };
 
       // Make a POST request to add the new week data
-      const response = await axios.post(`http://localhost:5000/course-content/${courseId}/weeks`, newWeekData);
+      const response = await axios.post(`http://entertrainer-2.onrender.com/course-content/${courseId}/weeks`, newWeekData);
 
       // Handle success - you can update state or perform other actions
       console.log('Week data added successfully:', response.data);
@@ -92,7 +92,7 @@ const ManageCourse = () => {
       };
 
       // Make a PUT request to update the existing week data
-      const response = await axios.put(`http://localhost:5000/course-content/${courseId}/weeks/${weeks[activeWeek]._id}`, updatedWeekData);
+      const response = await axios.put(`http://entertrainer-2.onrender.com/course-content/${courseId}/weeks/${weeks[activeWeek]._id}`, updatedWeekData);
 
       // Handle success - you can update state or perform other actions
       console.log('Week data updated successfully:', response.data);
@@ -247,7 +247,7 @@ const ManageCourse = () => {
 
 
       // Make a POST request to submit the assignment
-      const response = await axios.post(`http://localhost:5000/extras/submit-assignment`, {
+      const response = await axios.post(`http://entertrainer-2.onrender.com/extras/submit-assignment`, {
         userId,
         courseId,
         weekNumber: weeks[weekIndex].weekNumber,

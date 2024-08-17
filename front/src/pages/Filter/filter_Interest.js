@@ -12,7 +12,7 @@ const FilterInterest = () => {
     // Make a request to your backend with the selected values
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/course/genre', {
+        const response = await fetch('http://entertrainer-2.onrender.com/course/genre', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

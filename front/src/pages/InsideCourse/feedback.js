@@ -20,7 +20,7 @@ const FeedbackManagement = () => {
     }
 
     // Fetch enrolled users for the course
-    axios.get(`http://localhost:5000/course/enrolled-users/${courseId}`)
+    axios.get(`http://entertrainer-2.onrender.com/course/enrolled-users/${courseId}`)
       .then((response) => {
         setEnrolledUsers(response.data.userSubscribed || []);
       })
@@ -31,13 +31,13 @@ const FeedbackManagement = () => {
   useEffect(() => {
     // Fetch user assignments when a user is selected
     if (selectedUser) {
-      axios.get(`http://localhost:5000/extras/submissions/${selectedUser.userId}/${courseId}`)
+      axios.get(`http://entertrainer-2.onrender.com/extras/submissions/${selectedUser.userId}/${courseId}`)
         .then((response) => {
           const userSubmissions = response.data.submissions || [];
           setUserAssignments(userSubmissions);
 
           // Check for feedback for the selected user and course
-          axios.get(`http://localhost:5000/course/${courseId}/feedback/${selectedUser.userId}`)
+          axios.get(`http://entertrainer-2.onrender.com/course/${courseId}/feedback/${selectedUser.userId}`)
             .then((feedbackResponse) => {
               const feedbackList = feedbackResponse.data.feedbackList || [];
               const assignmentsWithFeedback = userSubmissions.map((assignment) => {
@@ -67,8 +67,8 @@ const FeedbackManagement = () => {
 
     if (fetchUserId) {
       Promise.all([
-        axios.get(`http://localhost:5000/extras/submissions/${fetchUserId}/${courseId}`),
-        axios.get(`http://localhost:5000/course/${courseId}/feedback/${fetchUserId}`)
+        axios.get(`http://entertrainer-2.onrender.com/extras/submissions/${fetchUserId}/${courseId}`),
+        axios.get(`http://entertrainer-2.onrender.com/course/${courseId}/feedback/${fetchUserId}`)
       ]).then(([submissionsResponse, feedbackResponse]) => {
         const submissions = submissionsResponse.data.submissions || [];
         const feedbackList = feedbackResponse.data.feedbackList || [];
@@ -100,7 +100,7 @@ const FeedbackManagement = () => {
     console.log('feedbackId', feedbackId);
     if (feedbackId) {
       // If feedbackId exists, update the feedback
-      axios.put(`http://localhost:5000/course/feedback/${feedbackId}`, {
+      axios.put(`http://entertrainer-2.onrender.com/course/feedback/${feedbackId}`, {
         feedback,
         marks,
         grade,
@@ -123,7 +123,7 @@ const FeedbackManagement = () => {
         });
     } else {
       // If feedbackId does not exist, submit new feedback
-      axios.post(`http://localhost:5000/course/${courseId}/submit-feedback`, {
+      axios.post(`http://entertrainer-2.onrender.com/course/${courseId}/submit-feedback`, {
         studentId: selectedUser.userId,
         instructorId: userId,
         assignmentId,
