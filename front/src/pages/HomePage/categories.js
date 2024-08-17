@@ -45,7 +45,7 @@ const CourseCategories = () => {
                   </div>
 
                 </a>
-                {/* <p style={{ color: 'orange', textAlign: 'center', fontSize: '40px', }}>And many more...</p> */}
+                
 
               </div>
             </div>
@@ -64,6 +64,7 @@ const CourseCategories = () => {
               </div>
             </a>
           </div>
+          <p style={{ color: 'orange', textAlign: 'center', fontSize: '40px', }}>And many more...</p>
         </div>
       </div>
     </div>

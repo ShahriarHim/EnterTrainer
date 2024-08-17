@@ -103,17 +103,23 @@ const Courses = () => {
                     <div className="row">
                         <div className="col-lg-4 col-md-6 mb-4">
                             <div className="rounded overflow-hidden mb-2">
-                                <img className="img-fluid" src="/assets/img/course-1.jpg" alt="" />
+                                <img className="img-fluid" src="https://images.squarespace-cdn.com/content/v1/5b7d8ac7697a988b951bdc95/1611728210677-016BGGS79ZRHB96CKQS3/image-9.jpg?format=2500w" alt=""
+                                    style={{
+                                        height: '300px',     // Set the desired height
+                                        objectFit: 'cover',   // Ensure the image covers the area without distortion
+                                        width: '100%'         // Ensure the image fills the container width
+                                    }}
+                                />
                                 <div className="bg-secondary p-4">
                                     <div className="d-flex justify-content-between mb-3">
-                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>25 Students</small>
+                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>45 Students</small>
                                         <small className="m-0"><i className="far fa-clock text-primary mr-2"></i>01h 30m</small>
                                     </div>
-                                    <a className="h5" href="">Web design & development courses for beginner</a>
+                                    <a className="h5" href="">Acoustic Guitar</a>
                                     <div className="border-top mt-4 pt-4">
                                         <div className="d-flex justify-content-between">
-                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                            <h5 className="m-0">$99</h5>
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.7 <small>(350)</small></h6>
+                                            <h5 className="m-0">$399</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -121,17 +127,23 @@ const Courses = () => {
                         </div>
                         <div className="col-lg-4 col-md-6 mb-4">
                             <div className="rounded overflow-hidden mb-2">
-                                <img className="img-fluid" src="/assets/img/course-2.jpg" alt="" />
+                                <img className="img-fluid" src="https://www.shutterstock.com/image-vector/illustration-young-beautiful-indian-classical-260nw-1478234756.jpg" alt=""
+                                    style={{
+                                        height: '300px',     // Set the desired height
+                                        objectFit: 'cover',   // Ensure the image covers the area without distortion
+                                        width: '100%'         // Ensure the image fills the container width
+                                    }}
+                                />
                                 <div className="bg-secondary p-4">
                                     <div className="d-flex justify-content-between mb-3">
                                         <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>25 Students</small>
                                         <small className="m-0"><i className="far fa-clock text-primary mr-2"></i>01h 30m</small>
                                     </div>
-                                    <a className="h5" href="">Web design & development courses for beginner</a>
+                                    <a className="h5" href="">Classical Dance</a>
                                     <div className="border-top mt-4 pt-4">
                                         <div className="d-flex justify-content-between">
-                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                            <h5 className="m-0">$99</h5>
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.0 <small>(120)</small></h6>
+                                            <h5 className="m-0">$199</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -139,17 +151,23 @@ const Courses = () => {
                         </div>
                         <div className="col-lg-4 col-md-6 mb-4">
                             <div className="rounded overflow-hidden mb-2">
-                                <img className="img-fluid" src="/assets/img/course-3.jpg" alt="" />
+                                <img className="img-fluid" src="https://media.istockphoto.com/id/636761588/photo/used-brushes-on-an-artists-palette-of-colorful-oil-paint.jpg?s=612x612&w=0&k=20&c=38YQxVJVWnNfvGtlb7AXMx_ItyHZMEdmWenNkWNQ91g=" alt=""
+                                    style={{
+                                        height: '300px',     // Set the desired height
+                                        objectFit: 'cover',   // Ensure the image covers the area without distortion
+                                        width: '100%'         // Ensure the image fills the container width
+                                    }}
+                                />
                                 <div className="bg-secondary p-4">
                                     <div className="d-flex justify-content-between mb-3">
-                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>25 Students</small>
+                                        <small className="m-0"><i className="fa fa-users text-primary mr-2"></i>30 Students</small>
                                         <small className="m-0"><i className="far fa-clock text-primary mr-2"></i>01h 30m</small>
                                     </div>
-                                    <a className="h5" href="">Web design & development courses for beginner</a>
+                                    <a className="h5" href="">Acrylic Painting</a>
                                     <div className="border-top mt-4 pt-4">
                                         <div className="d-flex justify-content-between">
-                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                            <h5 className="m-0">$99</h5>
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>5.0 <small>(190)</small></h6>
+                                            <h5 className="m-0">$129</h5>
                                         </div>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Carousel() {
   return (
     <div className="container-fluid p-0 mb-5">
-      <div className="owl-carousel header-carousel position-relative">
+      <div className="header-carousel position-relative">
         <div className="owl-carousel-item position-relative">
           <img className="img-fluid" src="/assets/img/bg4.jpg" alt="" />
           <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style={{ background: "rgba(24, 29, 56, .7)" }}>

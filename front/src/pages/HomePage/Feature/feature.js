@@ -5,72 +5,69 @@ import './style.css'; // Import the CSS file for styling
 
 function Feature() {
   const [view, setView] = useState("student");
+  const [isAboutVisible, setIsAboutVisible] = useState(false); // State to toggle About section visibility
   const [courses, setCourses] = useState([
-    { id: 1, name: "Guitar", category: "Music", image: "https://images.squarespace-cdn.com/content/v1/5b7d8ac7697a988b951bdc95/1611728210677-016BGGS79ZRHB96CKQS3/image-9.jpg?format=2500w", instructorId: "ins1" },
-    { id: 2, name: "Piano", category: "Music", image: "https://wfuogb.com/wp-content/uploads/2021/10/900x520_piano-min.jpeg", instructorId: "ins2" },
-    { id: 3, name: "Violin", category: "Music", image: "https://www.yamaha.com/en/musical_instrument_guide/common/images/violin/maintenance_main.jpg", instructorId: "ins1" },
+    { id: 1, name: "Acoustic Guitar", category: "Music", image: "https://images.squarespace-cdn.com/content/v1/5b7d8ac7697a988b951bdc95/1611728210677-016BGGS79ZRHB96CKQS3/image-9.jpg?format=2500w", instructorId: "ins1" },
+    { id: 2, name: "Classical", category: "Dance", image: "https://www.shutterstock.com/image-vector/illustration-young-beautiful-indian-classical-260nw-1478234756.jpg", instructorId: "ins2" },
+    { id: 3, name: "Acrylic Painting", category: "Art", image: "https://media.istockphoto.com/id/636761588/photo/used-brushes-on-an-artists-palette-of-colorful-oil-paint.jpg?s=612x612&w=0&k=20&c=38YQxVJVWnNfvGtlb7AXMx_ItyHZMEdmWenNkWNQ91g=", instructorId: "ins1" },
   ]);
+  
   const [filter, setFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [instructorId, setInstructorId] = useState("");
-  const [studentId, setStudentId] = useState(""); // New Student ID state
+  const [studentId, setStudentId] = useState(""); 
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [showSelect, setShowSelect] = useState(false);
   const [foundCourses, setFoundCourses] = useState([]);
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
-
-  const handleCategoryChange = (e) => {
-    setCategoryFilter(e.target.value);
-  };
-
-  const handleCreateCourse = (newCourse) => {
-    setCourses([...courses, newCourse]);
-  };
-
-  const handleInstructorIdChange = (e) => {
-    setInstructorId(e.target.value);
-  };
-
-  const handleStudentIdChange = (e) => {
-    setStudentId(e.target.value); // Handling student ID input
-  };
-
+  const handleFilterChange = (e) => setFilter(e.target.value);
+  const handleCategoryChange = (e) => setCategoryFilter(e.target.value);
+  const handleCreateCourse = (newCourse) => setCourses([...courses, newCourse]);
+  const handleInstructorIdChange = (e) => setInstructorId(e.target.value);
+  const handleStudentIdChange = (e) => setStudentId(e.target.value);
   const handleSelectCourse = (courseId) => {
-    if (selectedCourses.includes(courseId)) {
-      setSelectedCourses(selectedCourses.filter(id => id !== courseId));
-    } else {
-      setSelectedCourses([...selectedCourses, courseId]);
-    }
+    setSelectedCourses(selectedCourses.includes(courseId) ? 
+      selectedCourses.filter(id => id !== courseId) : 
+      [...selectedCourses, courseId]);
   };
-
   const handleRemoveSelectedCourses = () => {
     setCourses(courses.filter(course => !selectedCourses.includes(course.id)));
     setSelectedCourses([]);
   };
-
   const handleFindCourses = () => {
     const filteredCourses = courses.filter(course => course.instructorId === instructorId);
     setFoundCourses(filteredCourses);
   };
 
+  const toggleAboutVisibility = () => setIsAboutVisible(!isAboutVisible);
+
   return (
     <div>
+      {/* Expandable About Section */}
+      <div className="about-section" onClick={toggleAboutVisibility} style={{ cursor: "pointer", padding: "10px 20px", background: "#f8f9fa", borderBottom: "1px solid #ddd" }}>
+        <div className="about-header">
+          <i className="fa fa-info-circle" aria-hidden="true"></i> 
+          <span style={{ marginLeft: "10px" }}>About Feature Section</span>
+          <i className={`fa fa-chevron-${isAboutVisible ? "up" : "down"}`} style={{ float: "right" }}></i>
+        </div>
+        {isAboutVisible && (
+          <div className="about-content" style={{ marginTop: "10px", padding: "10px", background: "#ffffff", border: "1px solid #ddd", borderRadius: "5px" }}>
+            <p>
+              This Feature view is a demo outlook on the profiles and their individual attributes. Due to server and security issues Database is not allowed, so Login and Signup as Instructor or as Student is prohibited to public access. For that reason This outlook is given to have a closer insight.Thank You.
+            </p>
+            <p>
+              For detailed feature review and module wise features check out the below documentation. 
+              <br />
+              <a href="http://tinyurl.com/ypp8b2uc" target="_blank" rel="noopener noreferrer">Link: http://tinyurl.com/ypp8b2uc</a>
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Button Container */}
       <div className="button-container">
-        <button
-          className={view === "student" ? "active" : ""}
-          onClick={() => setView("student")}
-        >
-          Student
-        </button>
-        <button
-          className={view === "instructor" ? "active" : ""}
-          onClick={() => setView("instructor")}
-        >
-          Instructor
-        </button>
+        <button className={view === "student" ? "active" : ""} onClick={() => setView("student")}>Student</button>
+        <button className={view === "instructor" ? "active" : ""} onClick={() => setView("instructor")}>Instructor</button>
       </div>
 
       {view === "student" && (
@@ -81,8 +78,8 @@ function Feature() {
               type="text"
               className="small-input"
               placeholder="Student ID"
-              value={studentId} // Binding student ID to input
-              onChange={handleStudentIdChange} // Handling student ID change
+              value={studentId}
+              onChange={handleStudentIdChange}
               required
             />
             <button className="find-button" onClick={handleFindCourses}>Find</button>
@@ -105,7 +102,6 @@ function Feature() {
               <option value="Art">Art</option>
               <option value="Dance">Dance</option>
               <option value="Programming">Programming</option>
-              {/* Add more categories as needed */}
             </select>
           </div>
           <section className="articles">
@@ -120,12 +116,12 @@ function Feature() {
                   </figure>
                   <div className="article-body">
                     <h2>{course.name}</h2>
+                    <p>This is a description for {course.name}. You can add more details here.</p>
                     <p>
-                      This is a description for {course.name}. You can add more details here.
+                      Category: <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{course.category}</span>
                     </p>
                     <a href="#" className="read-more">
                       Enroll
-                      {/* <span className="sr-only"> about {course.name}</span> */}
                       <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
@@ -157,12 +153,7 @@ function Feature() {
             <>
               <h2>Manage Courses</h2>
               <div className="select-remove-container">
-                <button
-                  className="small-button"
-                  onClick={() => setShowSelect(!showSelect)}
-                >
-                  Select
-                </button>
+                <button className="small-button" onClick={() => setShowSelect(!showSelect)}>Select</button>
                 {showSelect && (
                   <button className="small-button" onClick={handleRemoveSelectedCourses}>Remove</button>
                 )}
@@ -183,12 +174,9 @@ function Feature() {
                       </figure>
                       <div className="article-body">
                         <h2>{course.name}</h2>
-                        <p>
-                          This is a description for {course.name}. You can add more details here.
-                        </p>
+                        <p>This is a description for {course.name}. You can add more details here.</p>
                         <a href="#" className="read-more">
                           Manage
-                          {/* <span className="sr-only"> about {course.name}</span> */}
                           <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                           </svg>

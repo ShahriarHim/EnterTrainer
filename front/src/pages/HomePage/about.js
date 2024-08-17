@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../Comp/navbar";
 import Footer from "../Comp/footer";
 import Layout from "../layout";
-import OwlCarousel from 'react-owl-carousel'; // Import Owl Carousel
-import 'owl.carousel/dist/assets/owl.carousel.css'; // Import Owl Carousel CSS
-import 'owl.carousel/dist/assets/owl.theme.default.css'; // Import Owl Carousel CSS
+import OwlCarousel from 'react-owl-carousel'; 
+import 'owl.carousel/dist/assets/owl.carousel.css'; 
+import 'owl.carousel/dist/assets/owl.theme.default.css'; 
 function About() {
   return (
     <div>
@@ -188,7 +188,7 @@ function About() {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <OwlCarousel
-                className="owl-theme"
+                className="testimonial-carousal"
                 loop
                 margin={10}
                 items={1}
@@ -258,7 +258,7 @@ function About() {
                   <span>Profession</span>
                 </div>
               </OwlCarousel>
-              <style>
+              {/* <style>
                 {`
                   .owl-dots {
                     text-align: center;
@@ -281,7 +281,7 @@ function About() {
                     background-color: #333;
                   }
                 `}
-              </style>
+              </style> */}
             </div>
           </div>
         </div>

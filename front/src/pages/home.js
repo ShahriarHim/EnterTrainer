@@ -14,13 +14,11 @@ const HomePage = () => {
   return (
 
     <div>
-
       <Carousel />
-      <Instructors />
       <Courses />
-      <About />
+      <Instructors />
       <Service />
-
+      <About />
     </div>
   )
   {/* <Dashboard /> */ }
